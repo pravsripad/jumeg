@@ -17,7 +17,8 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # define some global file ending pattern
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-inv_pattern = ",meg-inv.fif"
+#inv_pattern = ",meg-inv.fif"
+inv_pattern = "-inv.fif" # changed inv pattern (maybe should be argument?)
 img_src_group_ica = ",src_group_ICA"
 
 

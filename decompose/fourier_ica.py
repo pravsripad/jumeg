@@ -130,6 +130,29 @@ def calc_inv_kernel(fn_inv, method="dSPM", nave=1, snr=6.,
     return kernel, noise_norm, vertno
 
 
+def get_correct_subjects_dir(full_raw_fname):
+    '''Take the raw file name and return the appropriate subjects
+       directory to be used. This is specific to resting state data
+       experiments.
+    '''
+    import os.path as op
+    basename = op.basename(full_raw_fname)
+    exp = basename.split('_')[1]  # the experiement name
+    # set the suffixes, subjdirs based on the exp
+    if exp == 'LDAEP01':
+        suffix = ',ocarta,5m,3m-raw.fif'
+        subjdir = '/home/psripad/m21_data/ldaep01_resting_state_analysis'
+    elif exp == 'LEDA01':
+        suffix = ',ocarta-raw.fif'
+        subjdir = '/home/psripad/m21_data/leda_resting_state_analysis'
+    elif exp == 'MEG94T' and basename.split('_')[2] != 'rest':
+        # include rest string check to avoid including patient data
+        suffix = ',ocarta-raw.fif'
+        subjdir = '/home/psripad/m21_data/meg94T_resting_state_analysis'
+    else:
+        suffix = ',ocarta,3m-raw.fif'
+        subjdir = '/home/psripad/m21_data/resting_state_analysis'
+    return subjdir, suffix
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # estimate source localization for STFT transformed data
@@ -201,7 +224,12 @@ def stft_source_localization(data, fn_inv, method="dSPM",
     # -------------------------------------------
     if morph2fsaverage:
         subject_id = basename(fn_inv)[:6]
-        subjects_dir = dirname(dirname(fn_inv))
+        # subjects_dir = dirname(dirname(fn_inv))
+        # hack here to set appropriate subjects dir for diff files
+        # based on the filename
+        subjects_dir, _ = get_correct_subjects_dir(fn_inv)
+        print 'The subjects directory chosen is %s ' % (subjects_dir)
+
         vertices_to = grade_to_vertices('fsaverage', grade=4,
                                         subjects_dir=subjects_dir)
 
