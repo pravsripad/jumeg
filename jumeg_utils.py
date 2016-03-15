@@ -197,11 +197,12 @@ def chop_raw_data(raw, start_time=60.0, stop_time=360.0, save=True):
     data, times = raw[:, start_idx:stop_idx]
     raw._data,raw._times = data, times
     dur = int((stop_time - start_time) / 60)
+    outfile = raw.info['filename'].split('-raw.fif')[0] + ',' + str(dur) + 'm-raw.fif'
     if save:
         #raw.save(raw.info['filename'].split('/')[-1].split('.')[0] + '_' + str(dur) + 'm-raw.fif')
-        raw.save(raw.info['filename'].split('-raw.fif')[0] + ',' + str(dur) + 'm-raw.fif')
+        raw.save(outfile)
     raw.close()
-    return
+    return outfile
 
 
 ##################################################

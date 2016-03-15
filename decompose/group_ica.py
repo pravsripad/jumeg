@@ -17,7 +17,8 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # define some global file ending pattern
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-inv_pattern = "-src-meg-inv.fif"
+#inv_pattern = ",meg-inv.fif"
+inv_pattern = "-inv.fif" # changed inv pattern (maybe should be argument?)
 img_src_group_ica = ",src_group_ICA"
 
 
@@ -33,7 +34,8 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
                                hamming_data=True, remove_outliers=True,
                                complex_mixing=True, max_iter=2000,
                                conv_eps=1e-9, lrate=0.2, cost_function='g2',
-                               envelopeICA=False, verbose=True):
+                               envelopeICA=False, verbose=True,
+                               fn_base='group_ICA_resting_state.obj'):
 
 
     """
@@ -47,7 +49,7 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
             less memory!
             default: average=False
         stim_name: name of the stimulus channel. Note, for
-            applying FourierCIA data are chopped around stimulus
+            applying FourierICA data are chopped around stimulus
             onset. If not set data are chopped in overlapping
             windows
             default: stim_names=None
@@ -108,10 +110,10 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
             handle as an optional parameter.
             remove_outliers=True
         complex_mixing:
-        max_iter:  maximum number od iterations used in FourierICA
+        max_iter:  maximum number of iterations used in FourierICA
             default: max_iter=2000
-        conv_eps: teration stops when weight changes are smaller
-            then this number
+        conv_eps: Iteration stops when weight changes are smaller
+            than this number
             default: conv_eps = 1e-9
         lrate: initial learning rate
             default: lrate=0.2
@@ -201,7 +203,8 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
     if stim_id:
         fn_base = "group_ICA_%02ddB.obj" % (stim_id)
     else:
-        fn_base = "group_ICA_resting_state.obj"
+        # fn_base = "group_ICA_resting_state.obj"
+        fn_base = fn_base
 
     fnout = join(dirname(dirname(fn_list[0])), fn_base)
     with open(fnout, "wb") as filehandler:
@@ -476,7 +479,3 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
                            temporal_envelope=temporal_envelope,
                            classification=classification,
                            show=False)
-
-
-
-
