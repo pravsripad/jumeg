@@ -682,7 +682,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                            time_range=[None, None],
                            global_scaling=False,
                            classification={},
-                           percentile=97, show=True):
+                           percentile=95, show=True):
 
     """
     Generate plot containing all results achieved by
@@ -704,26 +704,27 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     from mne.source_estimate import _make_stc
     from mne.time_frequency._stockwell import _induced_power_stockwell
     from os import environ, makedirs, rmdir, remove
-    from os.path import exists, join
+    from os.path import exists, join, isfile
     from scipy import fftpack, misc
     import types
     import time
 
     from mne import stc_to_label
     from mne import read_source_spaces
-    from mne.label import write_labels_to_annot
+    from mne.label import write_labels_to_annot, write_label
     from mne.fixes import partial
     from jumeg.jumeg_utils import (subtract_overlapping_vertices,
                                    apply_percentile_threshold,
                                    get_cmap)
     import pickle
+    assert round(sfreq, 2) == 678.17, 'Error: Sampling frequency mismatch !'
 
     # -------------------------------------------
     # check input parameter
     # -------------------------------------------
-    if tpre == None:
+    if tpre is None:
         tpre = fourier_ica_obj.tpre
-    if flow == None:
+    if flow is None:
         flow = fourier_ica_obj.flow
     if not fhigh:
         fhigh = fourier_ica_obj.fhigh
@@ -732,20 +733,20 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     if not win_length_sec:
         win_length_sec = fourier_ica_obj.win_length_sec
 
-
     win_ntsl = int(np.floor(sfreq * win_length_sec))
     startfftind = int(np.floor(flow * win_length_sec))
     ncomp, nvoxel = W_orig.shape
     nfreq, nepochs, nvoxel = src_loc_data.shape
+    print 'win_ntsl time slice window %d' % win_ntsl
+    print 'number of components %d' % ncomp
+    print 'number of voxels %d' % nvoxel
+    print 'nfreq, nepochs = %f, %f' % (nfreq, nepochs)
+    process_as_labels = False
 
     if time_range == [None, None]:
         time_range = [tpre, tpre + win_length_sec]
 
-
-    # -------------------------------------------
-    # generate spatial profiles
-    # (using magnitude and phase)
-    # -------------------------------------------
+    # generate spatial profiles (using magnitude and phase)
     if not subjects_dir:
         subjects_dir = environ.get('SUBJECTS_DIR')
 
@@ -754,13 +755,11 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     else:
         A_orig_mag = A_orig
 
-
     # create temporary directory to save plots
     # of spatial profiles
     temp_plot_dir = join(subjects_dir, subject, 'temp_plots')
     if not exists(temp_plot_dir):
         makedirs(temp_plot_dir)
-
 
     # -------------------------------------------
     # check if temporal envelope is already
@@ -788,9 +787,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 temporal_envelope[iepoch, :, :] = act[:, iepoch, :].real
 
             else:
-                # -------------------------------------------
                 # generate temporal profiles
-                # -------------------------------------------
                 # apply inverse STFT to get temporal envelope
                 fft_act[:, startfftind:(startfftind+nfreq)] = act[:, iepoch, :]
                 temporal_envelope[iepoch, :, :] = fftpack.ifft(fft_act, n=win_ntsl, axis=1).real
@@ -806,7 +803,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
         key_borders = np.insert(key_borders, 0, 1)
         key_borders = np.cumsum(key_borders)[:-1]
-
     else:
         idx_sort = np.arange(ncomp)
 
@@ -831,27 +827,36 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     ylim_temp = [-0.05, 1.05]
 
     # read the source space here
-    src = read_source_spaces(src_fname)
-    apply_percentile_thresh = partial(apply_percentile_threshold, percentile=percentile)
+    src_fname = join(subjects_dir, subject, 'bem', subject + '-ico-4-src.fif')
+    if isfile(src_fname):
+        print 'reading source space %s' % src_fname
+        src = read_source_spaces(src_fname)
+    else:
+        print 'Error: source file %s not found' % src_fname
+
+    apply_percentile_thresh = partial(apply_percentile_threshold,
+                                      percentile=percentile)
+
     # -------------------------------------------
     # loop over all components to generate
     # spatial profiles
     # Note: This will take a while
     # -------------------------------------------
+    label_pieces = []  # collect all the labels computed from stcs
     for icomp in range(ncomp):
         print 'Generating spatial profiles for %d of %d' % (icomp, ncomp)
         # generate stc-object from current component
         A_cur = A_orig_mag[:, icomp]
-        prav_test = True
+        prav_test = False
         if prav_test:
             vertno = [vertno[0], vertno[1]]
 
-        src_loc = _make_stc(A_cur[:, np.newaxis], vertices=vertno, tmin=0, tstep=1,
-                            subject=subject)
+        src_loc = _make_stc(A_cur[:, np.newaxis], vertices=vertno, tmin=0,
+                            tstep=1, subject=subject)
 
         # prav save the source time courses
         src_loc_name = "IC%02d_src_loc" % (icomp + 1)
-        # src_loc.save(src_loc_name)
+        src_loc.save(src_loc_name)
 
         # define current range (Xth percentile)
         fmin = np.percentile(A_cur, percentile)
@@ -862,7 +867,8 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
         for hemi in ['lh', 'rh']:
             # plot spatial profiles
-            brain = src_loc.plot(surface='inflated', hemi=hemi, subjects_dir=subjects_dir,
+            brain = src_loc.plot(surface='inflated', hemi=hemi,
+                                 subjects_dir=subjects_dir,
                                  config_opts={'cortex': 'bone'}, views=['lat'],
                                  time_label=' ', colorbar=False, clim=clim)
             time.sleep(1)
@@ -872,48 +878,51 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             brain.save_montage(fnout_montage, order=['lat', 'med'])
             brain.close()
 
-        # convert stc to labels based on percentile, convert to labels and
-        # create annotations with the labels
+        if process_as_labels:
+            # convert stc to labels based on percentile, convert to labels and
+            # create annotations with the labels
+            src_loc.transform_data(apply_percentile_thresh)
 
-        src_loc.transform_data(apply_percentile_thresh)
+            label = stc_to_label(src_loc, src=src, smooth=True, connected=True,
+                                 subjects_dir=subjects_dir)
 
-        label = stc_to_label(src_loc, src=src, smooth=True, connected=True,
-                             subjects_dir=subjects_dir)
+            write_label('FICA_label_IC%02d.label', label)
+            # hemi left = 0, right = 1.
+            # if connected is True a list of lists is returned
+            for hemi in [0, 1]:
+                if label[hemi] != []:
+                    if not isinstance(label[hemi], list):
+                        label[hemi] = [label[hemi]]
+                    for piece in label[hemi]:
+                        piece = subtract_overlapping_vertices(piece, label_pieces)
+                        if piece is not None:
+                            piece.name = 'FICA_label_IC%02d' % (icomp + 1)
+                            label_pieces += [piece]
 
-        # hemi left = 0, right = 1. = if connected is True a list of lists is returned
-        label_pieces = []
-        for hemi in [0, 1]:
-            if label[hemi] != []:
-                if not isinstance(label[hemi], list):
-                    label[hemi] = [label[hemi]]
-                for piece in label[hemi]:
-                    piece = subtract_overlapping_vertices(piece, label_pieces)
-                    if piece is not None:
-                        piece.name = 'FICA_label_IC%02d' % (icomp + 1)
-                        label_pieces += [piece]
+    if process_as_labels:
+        # make array of label sizes and choose mean as threshold
+        vert = []
+        vert += [lab.vertices.size for lab in label_pieces]
+        vert_mean = np.round(np.array(vert).mean())
+        print 'The minimum number of vertices chosen for a label is ', vert_mean
 
-    # make array of label sizes and choose mean as threshold
-    vert = []
-    vert += [lab.vertices.size for lab in label_pieces]
-    vert_mean = np.round(np.array(vert).mean())
-    print 'The minimum number of vertices chosen for a label is ', vert_mean
+        cmap = get_cmap(len(label_pieces))
+        final_labels = []
+        for i, lab in enumerate(label_pieces):
+            if lab.vertices.size >= vert_mean:
+                lab.color = cmap(i)
+                final_labels += [lab]
 
-    cmap = get_cmap(len(label_pieces))
-    final_labels = []
-    for i, lab in enumerate(label_pieces):
-        if lab.vertices.size >= vert_mean:
-            lab.color = cmap(i)
-            final_labels += [lab]
+        print 'Number of labels before reduction ', len(label_pieces)
+        print 'Number of labels after reduction ', len(final_labels)
 
-    print 'Number of labels before reduction ', len(label_pieces)
-    print 'Number of labels after reduction ', len(final_labels)
-
-    save_labels = False
-    if save_labels:
-        # save labels as annot TODO - change the name below
-        parc_fname = 'fourier_ica_ini'
-        write_labels_to_annot(final_labels, subject='fsaverage',
-                              parc=parc_fname, subjects_dir=subjects_dir)
+        save_labels = True
+        if save_labels:
+            # save labels as annot TODO - change the name below
+            parc_fname = 'fourier_ica_test'
+            write_labels_to_annot(final_labels, subject='fsaverage',
+                                  parc=parc_fname, subjects_dir=subjects_dir,
+                                  overwrite=True)
 
     # close mlab figure
     mlab.close(all=True)
@@ -937,7 +946,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             data_stockwell = temporal_envelope[itemp][0][:, icomp, idx_start:idx_end].\
                 reshape((nepochs, 1, idx_end-idx_start))
 
-
+            print 'sfreq %f, times %f before stockwell power ' % (sfreq, times.size)
             power_data, _, freqs = _induced_power_stockwell(data_stockwell, sfreq=sfreq, fmin=flow,
                                                             fmax=fhigh, width=1.0, decim=1,
                                                             return_itc=False, n_jobs=4)
@@ -969,20 +978,22 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 vmin[icomp] = None
                 vmax[icomp] = None
 
-    # np.save('freqs.npy', freqs)
-    # prav save the average_power_all objects
-    # with open('average_power_all.list', 'wb') as f:
-    #      pickle.dump(average_power_all, f)
+    # prav save the average_power_all list
+    save_avg_power_list = False
+    if save_avg_power_list:
+        np.save('freqs.npy', freqs)
+        with open('average_power_all.list', 'wb') as f:
+             pickle.dump(average_power_all, f)
 
     # prav compute max value of average power for scale/plot purposes
     avg_pwr_max = []
-    for avg in average_power_all:
+    for avg in average_power_all[0]:
         avg_pwr_max += [np.mean(avg, axis=1).max() +
                         np.abs(np.mean(avg, axis=1).min())]
     avg_pwr_scaled_max = np.max(avg_pwr_max)
     print 'Average max power ', avg_pwr_max
     print 'Average power limits ', avg_pwr_scaled_max
-    #
+
     # # define thresholds
     # if time_range[0] < 0:
     #     print 'Computing thresholds for power... (for event based data only)'
@@ -1111,17 +1122,21 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                             color='black', linewidth=3.0)
                 else:
                     # plot average (across time) power spectra across frequencies
-                    avg_pwr = np.mean(average_power, axis=1)
+                    # scaled for plotting purposes only
+                    avg_pwr = np.mean(average_power, axis=1) * 1e6
                     assert avg_pwr.shape is not freqs.shape, 'Avg Power not equal to number of frequency points'
                     print avg_pwr_scaled_max
-                    p2.bar(freqs, avg_pwr + np.abs(avg_pwr.min()))
-                    p2.set_ylim(0., avg_pwr_scaled_max)
+                    p2.bar(freqs, avg_pwr + np.abs(avg_pwr.min()), width=0.4)
+                    p2.set_ylim(0., avg_pwr_scaled_max * 1e6)
                     p2.set_xlabel('frequency [Hz]')
                     p2.set_ylabel('power [dB]')
 
         # save image
+        if time_freq_plot:
+            fnout_complete = '%s%02d,tseries.png' % (fnout, iimg+1)
+        else:
+            fnout_complete = '%s%02d,tfbins.png' % (fnout, iimg+1)
         if fnout:
-            fnout_complete = '%s%02d.png' % (fnout, iimg+1)
             plt.savefig(fnout_complete, format='png', dpi=300)
 
         # show image if requested
@@ -1133,7 +1148,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     # remove temporary directory for
     # spatial profile plots
     if exists(temp_plot_dir):
-        pass
         # rmdir(temp_plot_dir)
+        pass
 
     plt.ion()
