@@ -404,12 +404,13 @@ def apply_stft(origdata, events=[], tpre=0.0, sfreq=1017.25,
 
     # compute number of time points in one window based on other
     # parameter
+    print 'Computing Fourier coefficients for %s time points (ntsl)'\
+          ' using sampling freq %f\n' % (ntsl, sfreq)
     win_size = np.floor(win_length_sec*sfreq)
     win_inter = np.ceil(win_size/overlap_fac)
 
     if already_epoched:
         win_size, nwindows, nchan = origdata.shape
-
     elif len(events):
         events = events[events > np.abs(tpre * sfreq)]
         events = events[events < (ntsl-win_size-np.abs(tpre * sfreq))]
@@ -417,10 +418,9 @@ def apply_stft(origdata, events=[], tpre=0.0, sfreq=1017.25,
             nwindows = len(events)
         else:
             print "Events not in the index range of the data!"
-
     else:
         nwindows = int(np.floor((ntsl-win_size)/win_inter+1))
-
+        print '%d windows computed..' % nwindows
 
     # compute frequency indices (for the STFT)
     startfftind = int(np.floor(flow*win_length_sec))
@@ -437,7 +437,6 @@ def apply_stft(origdata, events=[], tpre=0.0, sfreq=1017.25,
         pdb.set_trace()
 
     fftsize = int(endfftind-startfftind)
-
 
     # initialization of tensor X, which is the main data matrix input
     # to the code that follows
@@ -507,6 +506,9 @@ def apply_stft(origdata, events=[], tpre=0.0, sfreq=1017.25,
             if verbose:
                 print "... Outliers removal: "
                 print ">>> removed %u windows" % len(outlier_indices[0])
+
+    print 'The events printed below. Confirm [] for resting state.'
+    print events
 
     return X, events
 
