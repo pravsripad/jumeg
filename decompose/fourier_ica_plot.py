@@ -444,11 +444,11 @@ def ICs_topoplot(A_orig, info, picks, fnout=None, show=True):
     plt.close('Topoplots')
     plt.ion()
 
-
-
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # plot results
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 def plot_results(fourier_ica_obj, meg_data,
                  W_orig, A_orig, info, picks,
                  cluster_quality=[], fnout=None,
@@ -484,8 +484,6 @@ def plot_results(fourier_ica_obj, meg_data,
             Otherwise only the first 10 components are plotted.
             default: plot_all=True
     """
-
-
 
     # ------------------------------------------
     # import necessary modules
@@ -682,7 +680,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                            time_range=[None, None],
                            global_scaling=False,
                            classification={},
-                           percentile=95, show=True):
+                           percentile=97, show=True):
 
     """
     Generate plot containing all results achieved by
@@ -741,7 +739,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     print 'number of components %d' % ncomp
     print 'number of voxels %d' % nvoxel
     print 'nfreq, nepochs = %f, %f' % (nfreq, nepochs)
-    process_as_labels = False
+    process_as_labels = True
 
     if time_range == [None, None]:
         time_range = [tpre, tpre + win_length_sec]
@@ -760,6 +758,11 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     temp_plot_dir = join(subjects_dir, subject, 'temp_plots')
     if not exists(temp_plot_dir):
         makedirs(temp_plot_dir)
+
+    # create temporary directory to save stcs
+    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs_EO')
+    if not exists(stcs_plot_dir):
+        makedirs(stcs_plot_dir)
 
     # -------------------------------------------
     # check if temporal envelope is already
@@ -814,7 +817,8 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     temporal_envelope_mean = np.empty((ntemp, 0)).tolist()
 
     for itemp in range(ntemp):
-        temporal_envelope_mean[itemp].append(np.mean(temporal_envelope[itemp][0], axis=0)[:, 5:-5])
+        temporal_envelope_mean[itemp].append(
+            np.mean(temporal_envelope[itemp][0], axis=0)[:, 5:-5])
 
     # scale temporal envelope between 0 and 1
     min_val = np.min(temporal_envelope_mean)
@@ -822,7 +826,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     scale_fact = 1.0 / (max_val - min_val)
 
     for itemp in range(ntemp):
-        temporal_envelope_mean[itemp][0] = np.clip(scale_fact * temporal_envelope_mean[itemp][0] - scale_fact * min_val, 0., 1.)
+        temporal_envelope_mean[itemp][0] =\
+            np.clip(scale_fact * temporal_envelope_mean[itemp][0] -
+                    scale_fact * min_val, 0., 1.)
 
     ylim_temp = [-0.05, 1.05]
 
@@ -854,9 +860,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         src_loc = _make_stc(A_cur[:, np.newaxis], vertices=vertno, tmin=0,
                             tstep=1, subject=subject)
 
-        # prav save the source time courses
+        # save the source time courses
         src_loc_name = "IC%02d_src_loc" % (icomp + 1)
-        src_loc.save(src_loc_name)
+        src_loc.save(join(stcs_plot_dir, src_loc_name))
 
         # define current range (Xth percentile)
         fmin = np.percentile(A_cur, percentile)
@@ -886,7 +892,10 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             label = stc_to_label(src_loc, src=src, smooth=True, connected=True,
                                  subjects_dir=subjects_dir)
 
-            write_label('FICA_label_IC%02d.label', label)
+            # write_label does not work if connected is True above because a
+            # list is returned
+            # write_label('FICA_label_IC%02d.label', label)
+
             # hemi left = 0, right = 1.
             # if connected is True a list of lists is returned
             for hemi in [0, 1]:
@@ -994,20 +1003,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     print 'Average max power ', avg_pwr_max
     print 'Average power limits ', avg_pwr_scaled_max
 
-    # # define thresholds
-    # if time_range[0] < 0:
-    #     print 'Computing thresholds for power... (for event based data only)'
-    #     vmax = np.percentile(average_power_all, 99)
-    #     vmedian = np.median(average_power_all)     # np.percentile(average_power_all, 50)
-    #     vmin = np.percentile(average_power_all, 1)
-    #     if np.abs((vmax - vmedian)) > np.abs((vmedian - vmin)):
-    #         vmin = vmedian - np.abs((vmax - vmedian))
-    #     else:
-    #         vmax = vmedian + np.abs((vmedian - vmin))
-    # else:
-    #     print 'No thresholds are chosen.'
-    #     vmin, vmax = None, None
-
     # ------------------------------------------
     # loop over all activations
     # ------------------------------------------
@@ -1032,25 +1027,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 idx_class += 1
                 p_text.text(0, 0, keys[idx_class-1], fontsize=25)
                 adjust_spines(p_text, [])
-
-            # ----------------------------------------------
-            # plot spatial profiles (magnitude)
-            # ----------------------------------------------
-            # spatial profile
-            # fn_base = "IC%02d_spatial_profile.png" % (idx_sort[icomp]+1)
-            # fnin_img = join(temp_plot_dir, fn_base)
-            # spat_tmp = misc.imread(fnin_img)
-            # remove(fnin_img)
-
-            # # rearrange image
-            # x_size, y_size, _ = spat_tmp.shape
-            # x_half, y_half = x_size/2, y_size/2
-            # x_frame = int(0.15*x_half)
-            # y_frame = int(0.05*y_half)
-            # spatial_profile = np.concatenate((spat_tmp[x_frame:(x_half-x_frame), y_frame:(y_half-y_frame), :],
-            #                                   spat_tmp[(x_half+x_frame):-x_frame, y_frame:(y_half-y_frame), :],
-            #                                   spat_tmp[(x_half+x_frame):-x_frame, (y_half+y_frame):-y_frame, :],
-            #                                   spat_tmp[x_frame:(x_half-x_frame), (y_half+y_frame):-y_frame, :]), axis=1)
 
             # read the montage image for lh and rh
             fn_base_lh = "IC%02d_%s_spatial_profile.png" % (idx_sort[icomp]+1, 'lh')
