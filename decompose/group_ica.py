@@ -314,6 +314,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             # ------------------------------------------
             # get some parameter
             fn_raw = fn_list[idx]
+            print 'file being processed.. %s' % fn_raw
             tmin, tmax = icasso_obj.tmin_win, icasso_obj.tmax_win
             win_length_sec = (tmax - tmin)
 
@@ -362,7 +363,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
 
             idx_start = idx * nwindows
 
-
+            print 'nwindows %f' % nwindows
             # -------------------------------------------
             # loop over all epochs
             # -------------------------------------------

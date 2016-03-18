@@ -141,17 +141,17 @@ def get_correct_subjects_dir(full_raw_fname):
     # set the suffixes, subjdirs based on the exp
     if exp == 'LDAEP01':
         suffix = ',ocarta,5m,3m-raw.fif'
-        subjdir = '/home/psripad/m21_data/ldaep01_resting_state_analysis'
+        subjdir = '/data/megraid21/sripad/ldaep01_resting_state_analysis'
     elif exp == 'LEDA01':
         suffix = ',ocarta-raw.fif'
-        subjdir = '/home/psripad/m21_data/leda_resting_state_analysis'
+        subjdir = '/data/megraid21/sripad/leda_resting_state_analysis'
     elif exp == 'MEG94T' and basename.split('_')[2] != 'rest':
         # include rest string check to avoid including patient data
         suffix = ',ocarta-raw.fif'
-        subjdir = '/home/psripad/m21_data/meg94T_resting_state_analysis'
+        subjdir = '/data/megraid21/sripad/meg94T_resting_state_analysis'
     else:
         suffix = ',ocarta,3m-raw.fif'
-        subjdir = '/home/psripad/m21_data/resting_state_analysis'
+        subjdir = '/data/megraid21/sripad/resting_state_analysis'
     return subjdir, suffix
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -522,7 +522,7 @@ def apply_stft(origdata, events=[], tpre=0.0, sfreq=1017.25,
 class JuMEG_fourier_ica(object):
 
     def __init__(self, events=[], tpre=0.0, overlap_fac=2.0, win_length_sec=1.0,
-                 sfreq=1017.25, flow=4.0, fhigh=34.0, hamming_data=True,
+                 sfreq=678.17, flow=4.0, fhigh=34.0, hamming_data=True,
                  remove_outliers=False, fcnoutliers=[], complex_mixing=True,
                  pca_dim=0.95, zero_tolerance=1e-7, ica_dim=200, max_iter=10000,
                  lrate=1.0, conv_eps=1e-16, cost_function='g2', envelopeICA=False):
