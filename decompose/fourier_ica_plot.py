@@ -760,7 +760,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         makedirs(temp_plot_dir)
 
     # create temporary directory to save stcs
-    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs_EO')
+    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs_realEO')
     if not exists(stcs_plot_dir):
         makedirs(stcs_plot_dir)
 

@@ -314,6 +314,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             # ------------------------------------------
             # get some parameter
             fn_raw = fn_list[idx]
+            print 'file being processed.. %s' % fn_raw
             tmin, tmax = icasso_obj.tmin_win, icasso_obj.tmax_win
             win_length_sec = (tmax - tmin)
 
@@ -375,6 +376,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
                 print act.shape, temporal_envelope.shape
 
             idx_start = idx * nwindows
+            print 'nwindows %f' % nwindows
 
             # -------------------------------------------
             # loop over all epochs
@@ -407,12 +409,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
         # -------------------------------------------
         temporal_envelope_all[istim].append(temporal_envelope.real)
 
-
-
     return temporal_envelope_all, src_loc, vert, sfreq
-
-
-
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -444,7 +441,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
             default: subjects_dir=None
     """
 
-
     # ------------------------------------------
     # import necessary modules
     # ------------------------------------------
@@ -455,7 +451,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
     # set log level to 'WARNING'
     set_log_level('WARNING')
 
-
     # ------------------------------------------
     # read in group FourierICA object
     # ------------------------------------------
@@ -465,13 +460,11 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
     icasso_obj = groupICA_obj['icasso_obj']
     win_length_sec = icasso_obj.tmax_win - icasso_obj.tmin_win
 
-
     # ------------------------------------------
     # get temporal envelope
     # ------------------------------------------
     temporal_envelope, src_loc, vert, sfreq = \
         get_group_fourierICA_time_courses(groupICA_obj)
-
 
     # ------------------------------------------
     # plot "group" results
@@ -480,7 +473,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
         classification = groupICA_obj['classification']
     else:
         classification = []
-
 
     fnout_src_fourier_ica = fn_groupICA_obj[:fn_groupICA_obj.rfind('.obj')] + \
                             img_src_group_ica
