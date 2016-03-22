@@ -335,8 +335,9 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             Xmat_c = src_loc.reshape((nrows_Xmat_c, nvoxel), order='F')
             dmean = np.mean(Xmat_c, axis=0).reshape((1, nvoxel))
             dstd = np.std(Xmat_c, axis=0).reshape((1, nvoxel))
-
-
+            print fn_raw
+            print 'fftsize, nwindows, nvoxel'
+            print fftsize, nwindows, nvoxel
 
             # -------------------------------------------
             # get some parameter
@@ -344,24 +345,36 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             ncomp, nvoxel = groupICA_obj['W_orig'].shape
             if fourier_ica_obj:
                 win_ntsl = int(np.floor(sfreq * win_length_sec))
+                print 'win_ntsl', win_ntsl
             else:
                 win_ntsl = fftsize
 
             startfftind = int(np.floor(icasso_obj.flow * win_length_sec))
             fft_act = np.zeros((ncomp, win_ntsl), dtype=np.complex)
 
-
             # -------------------------------------------
             # define result arrays
             # -------------------------------------------
             if idx == 0:
+                print 'running only once..'
                 # we have to double the number of components as we separate the
                 # results for left and right hemisphere
                 act = np.zeros((ncomp, nfn_list*nwindows, fftsize), dtype=np.complex)
                 temporal_envelope = np.zeros((nfn_list*nwindows, ncomp, win_ntsl))
+                # changes to fix the index error due to different nwindow sizes
+                # this is due to the different lengths of the data
+                nwindows_min = nwindows
+
+            # check if result arrays must be reduced
+            if nwindows_min > nwindows:
+                print 'reshaping the act and temporal envelopes'
+                nwindows_min = nwindows
+                act = act[:, :(nwindows_min * nfn_list), :]
+                temporal_envelope = temporal_envelope[:(nwindows_min * nfn_list), :, :]
+                print 'act.shape, temporal_envelope.shape'
+                print act.shape, temporal_envelope.shape
 
             idx_start = idx * nwindows
-
 
             # -------------------------------------------
             # loop over all epochs
@@ -373,11 +386,16 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
                                     np.dot(np.ones((fftsize, 1)), dstd)
 
                 # activations in both hemispheres
+                print 'Shape: act, src_loc_zero_mean'
+                print act.shape, src_loc_zero_mean.shape
+
+                import pudb; pudb.set_trace()
                 act[:, idx_start+iepoch, :] = np.dot(groupICA_obj['W_orig'], src_loc_zero_mean.transpose())
 
                 # generate temporal profiles:
                 # apply inverse STFT to get temporal envelope
                 if fourier_ica_obj:
+                    print 'starting to prepare temporal envelope'
                     fft_act[:, startfftind:(startfftind+fftsize)] = act[:, iepoch, :]
                     temporal_envelope[idx_start+iepoch, :, :] = fftpack.ifft(fft_act, n=win_ntsl, axis=1).real
                 else:
