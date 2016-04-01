@@ -136,22 +136,23 @@ def get_correct_subjects_dir(full_raw_fname):
        experiments.
     '''
     import os.path as op
+    megraid21_prefix = op.expanduser("~") + '/m21_data/'
     basename = op.basename(full_raw_fname)
     exp = basename.split('_')[1]  # the experiement name
     # set the suffixes, subjdirs based on the exp
     if exp == 'LDAEP01':
         suffix = ',ocarta,5m,3m-raw.fif'
-        subjdir = '/data/megraid21/sripad/ldaep01_resting_state_analysis'
+        subjdir = megraid21_prefix + 'ldaep01_resting_state_analysis'
     elif exp == 'LEDA01':
         suffix = ',ocarta-raw.fif'
-        subjdir = '/data/megraid21/sripad/leda_resting_state_analysis'
+        subjdir = megraid21_prefix + 'leda_resting_state_analysis'
     elif exp == 'MEG94T' and basename.split('_')[2] != 'rest':
         # include rest string check to avoid including patient data
         suffix = ',ocarta-raw.fif'
-        subjdir = '/data/megraid21/sripad/meg94T_resting_state_analysis'
+        subjdir = megraid21_prefix + 'meg94T_resting_state_analysis'
     else:
         suffix = ',ocarta,3m-raw.fif'
-        subjdir = '/data/megraid21/sripad/resting_state_analysis'
+        subjdir = megraid21_prefix + 'resting_state_analysis'
     return subjdir, suffix
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
