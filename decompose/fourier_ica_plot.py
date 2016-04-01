@@ -717,13 +717,16 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
     assert round(sfreq, 2) == 678.17, 'Error: Sampling frequency mismatch !'
 
-    # my flags
+    # prav my flags
     # set this flag to either plot timeseries or freq/power spectra bins
     time_freq_plot = False
     process_as_labels = True
-    # prav save the average_power_all list
-    save_avg_power_list = False
+
     save_labels = True
+    compute_spectral_power = False
+    # save the average_power_all list
+    save_avg_power_list = False
+    perform_temporal_spectral_plotting = False
 
     # -------------------------------------------
     # check input parameter
@@ -872,23 +875,38 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         src_loc_name = "IC%02d_src_loc" % (icomp + 1)
         src_loc.save(join(stcs_plot_dir, src_loc_name))
 
-        # define current range (Xth percentile)
-        fmin = np.percentile(A_cur, percentile)
-        fmax = np.max(A_cur)
-        fmid = 0.5 * (fmin + fmax)
-        clim = {'kind': 'value',
-                'lims': [fmin, fmid, fmax]}
+        if perform_temporal_spectral_plotting:
+            # define current range (Xth percentile)
+            fmin = np.percentile(A_cur, percentile)
+            fmax = np.max(A_cur)
+            fmid = 0.5 * (fmin + fmax)
+            clim = {'kind': 'value',
+                    'lims': [fmin, fmid, fmax]}
 
-        # plot spatial profiles
-        brain = src_loc.plot(surface='inflated', hemi='split', subjects_dir=subjects_dir,
-                             config_opts={'cortex': 'bone'}, views=['lateral', 'medial'],
-                             time_label=' ', colorbar=False, clim=clim)
+            for hemi in ['lh', 'rh']:
+                # plot spatial profiles
+                brain = src_loc.plot(surface='inflated', hemi=hemi,
+                                     subjects_dir=subjects_dir,
+                                     config_opts={'cortex': 'bone'}, views=['lat'],
+                                     time_label=' ', colorbar=False, clim=clim)
+                time.sleep(1)
+                # save results
+                fn_base = "IC%02d_%s_spatial_profile.png" % (icomp + 1, hemi)
+                fnout_montage = join(temp_plot_dir, fn_base)
+                brain.save_montage(fnout_montage, order=['lat', 'med'])
+                brain.close()
 
-        # save results
-        fn_base = "IC%02d_spatial_profile.png" % (icomp+1)
-        fnout_img = join(temp_plot_dir, fn_base)
-        brain.save_image(fnout_img)
-        brain.close()
+        # prav commented out (change way the image is stored)
+        # # plot spatial profiles
+        # brain = src_loc.plot(surface='inflated', hemi='split', subjects_dir=subjects_dir,
+        #                      config_opts={'cortex': 'bone'}, views=['lateral', 'medial'],
+        #                      time_label=' ', colorbar=False, clim=clim)
+        #
+        # # save results
+        # fn_base = "IC%02d_spatial_profile.png" % (icomp+1)
+        # fnout_img = join(temp_plot_dir, fn_base)
+        # brain.save_image(fnout_img)
+        # brain.close()
 
         # prav
         if process_as_labels:
@@ -943,180 +961,205 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     # close mlab figure
     mlab.close(all=True)
 
-    # -------------------------------------------
-    # loop over all components to generate
-    # spectral profiles
-    # -------------------------------------------
-    average_power_all = np.empty((ntemp, 0)).tolist()
-    vmin = np.zeros(ncomp)
-    vmax = np.zeros(ncomp)
-    print 'Generating power data..'
-    for itemp in range(ntemp):
-        for icomp in range(ncomp):
+    if compute_spectral_power:
+        # -------------------------------------------
+        # loop over all components to generate
+        # spectral profiles
+        # -------------------------------------------
+        average_power_all = np.empty((ntemp, 0)).tolist()
+        vmin = np.zeros(ncomp)
+        vmax = np.zeros(ncomp)
+        print 'Generating power data..'
+        for itemp in range(ntemp):
+            for icomp in range(ncomp):
 
-            nepochs = temporal_envelope[itemp][0].shape[0]
-            times = np.arange(win_ntsl)/sfreq + tpre
-            idx_start = np.argmin(np.abs(times - time_range[0]))
-            idx_end = np.argmin(np.abs(times - time_range[1]))
-
-            data_stockwell = temporal_envelope[itemp][0][:, icomp, idx_start:idx_end].\
-                reshape((nepochs, 1, idx_end-idx_start))
-
-            power_data, _, freqs = _induced_power_stockwell(data_stockwell, sfreq=sfreq, fmin=flow,
-                                                            fmax=fhigh, width=1.0, decim=1,
-                                                            return_itc=False, n_jobs=4)
-
-            # perform baseline correction
-            if time_range[0] < 0:
-                power_data = rescale(power_data, times[idx_start:idx_end], (None, 0), 'mean')
-                imax = np.argmin(np.abs(times[idx_start:idx_end]))
-                power_data /= np.sqrt(np.std(power_data[..., :imax], axis=-1)[..., None])
-
-            average_power = power_data.reshape((power_data.shape[1], power_data.shape[2]))
-            average_power_all[itemp].append(average_power)
-
-            # define thresholds
-            if time_range[0] < 0:
-                # vmax[icomp] = np.max((np.nanmax(average_power), vmax[icomp]))  # np.percentile(average_power_all, 99.9)
-                # vmin[icomp] = np.min((np.nanmin(average_power), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
-                vmax[icomp] = np.max((np.percentile(average_power, 99), vmax[icomp]))  # np.percentile(average_power_all, 99.9)
-                vmin[icomp] = np.min((np.percentile(average_power, 1), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
-
-
-                if np.abs(vmax[icomp]) > np.abs(vmin[icomp]):
-                    vmin[icomp] = - np.abs(vmax[icomp])
-                else:
-                    vmax[icomp] = np.abs(vmin[icomp])
-
-            else:
-                vmin[icomp] = None
-                vmax[icomp] = None
-
-    if save_avg_power_list:
-        np.save('freqs.npy', freqs)
-        with open('average_power_all.list', 'wb') as f:
-             pickle.dump(average_power_all, f)
-
-    # prav compute max value of average power for scale/plot purposes
-    avg_pwr_max = []
-    for avg in average_power_all[0]:
-        avg_pwr_max += [np.mean(avg, axis=1).max() +
-                        np.abs(np.mean(avg, axis=1).min())]
-    avg_pwr_scaled_max = np.max(avg_pwr_max)
-    print 'Average power limits ', avg_pwr_scaled_max
-
-    # ------------------------------------------
-    # loop over all activations
-    # ------------------------------------------
-    plt.ioff()
-    nimg = 1
-
-    # loop over all images
-    for iimg in range(nimg):
-
-        fig = plt.figure('FourierICA plots', figsize=(11 + ntemp*10, 60))
-        idx_class = 0
-
-        # estimate how many plots on current image
-        istart_plot = int(ncomp*iimg)
-        nplot = [ncomp]
-        gs = grd.GridSpec(ncomp*20+len(key_borders)*10, (ntemp+1)*10, wspace=0.1, hspace=0.05,
-                          left=0.04, right=0.96, bottom=0.04, top=0.96)
-
-        for icomp in range(istart_plot, nplot[iimg]):
-            if (icomp + 1) in key_borders:
-                p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+8+idx_class*10, 0:10])
-                idx_class += 1
-                p_text.text(0, 0, keys[idx_class-1], fontsize=25)
-                adjust_spines(p_text, [])
-
-            # ----------------------------------------------
-            # plot spatial profiles (magnitude)
-            # ----------------------------------------------
-            # spatial profile
-            fn_base = "IC%02d_spatial_profile.png" % (idx_sort[icomp]+1)
-            fnin_img = join(temp_plot_dir, fn_base)
-            spat_tmp = misc.imread(fnin_img)
-            remove(fnin_img)
-
-            # rearrange image
-            x_size, y_size, _ = spat_tmp.shape
-            x_half, y_half = x_size/2, y_size/2
-            x_frame = int(0.15*x_half)
-            y_frame = int(0.05*y_half)
-            spatial_profile = np.concatenate((spat_tmp[x_frame:(x_half-x_frame), y_frame:(y_half-y_frame), :],
-                                              spat_tmp[(x_half+x_frame):-x_frame, y_frame:(y_half-y_frame), :],
-                                              spat_tmp[(x_half+x_frame):-x_frame, (y_half+y_frame):-y_frame, :],
-                                              spat_tmp[x_frame:(x_half-x_frame), (y_half+y_frame):-y_frame, :]), axis=1)
-
-
-            p1 = fig.add_subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+15+idx_class*10, 0:10])
-            p1.imshow(spatial_profile)
-            p1.yaxis.set_ticks([])
-            p1.xaxis.set_ticks([])
-            y_name = "IC#%02d" % (idx_sort[icomp]+1)
-            p1.set_ylabel(y_name)
-
-            # ----------------------------------------------
-            # temporal/spectral profile
-            # ----------------------------------------------
-            for itemp in range(ntemp):
-
-                if icomp == 0 and len(stim_name):
-                    p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+(idx_class-1)*10: \
-                        20*(icomp-istart_plot)+8+(idx_class-1)*10, (itemp+1)*10+4:(itemp+2)*10-1])
-                    p_text.text(0, 0, "  " + stim_name[itemp], fontsize=30)
-                    adjust_spines(p_text, [])
-
-                times = (np.arange(win_ntsl)/sfreq + tpre)[5:-5]
+                nepochs = temporal_envelope[itemp][0].shape[0]
+                times = np.arange(win_ntsl)/sfreq + tpre
                 idx_start = np.argmin(np.abs(times - time_range[0]))
                 idx_end = np.argmin(np.abs(times - time_range[1]))
-                average_power = average_power_all[itemp][idx_sort[icomp]]
-                extent = (times[idx_start], times[idx_end], freqs[0], freqs[-1])
-                p2 = plt.subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+15+idx_class*10,
-                                 (itemp+1)*10+1:(itemp+2)*10-1])
 
-                if global_scaling:
-                    vmin_cur, vmax_cur = np.min(vmin), np.max(vmax)
+                data_stockwell = temporal_envelope[itemp][0][:, icomp, idx_start:idx_end].\
+                    reshape((nepochs, 1, idx_end-idx_start))
+
+                power_data, _, freqs = _induced_power_stockwell(data_stockwell, sfreq=sfreq, fmin=flow,
+                                                                fmax=fhigh, width=1.0, decim=1,
+                                                                return_itc=False, n_jobs=4)
+
+                # perform baseline correction
+                if time_range[0] < 0:
+                    power_data = rescale(power_data, times[idx_start:idx_end], (None, 0), 'mean')
+                    imax = np.argmin(np.abs(times[idx_start:idx_end]))
+                    power_data /= np.sqrt(np.std(power_data[..., :imax], axis=-1)[..., None])
+
+                average_power = power_data.reshape((power_data.shape[1], power_data.shape[2]))
+                average_power_all[itemp].append(average_power)
+
+                # define thresholds
+                if time_range[0] < 0:
+                    # vmax[icomp] = np.max((np.nanmax(average_power), vmax[icomp]))  # np.percentile(average_power_all, 99.9)
+                    # vmin[icomp] = np.min((np.nanmin(average_power), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
+                    vmax[icomp] = np.max((np.percentile(average_power, 99), vmax[icomp]))  # np.percentile(average_power_all, 99.9)
+                    vmin[icomp] = np.min((np.percentile(average_power, 1), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
+
+
+                    if np.abs(vmax[icomp]) > np.abs(vmin[icomp]):
+                        vmin[icomp] = - np.abs(vmax[icomp])
+                    else:
+                        vmax[icomp] = np.abs(vmin[icomp])
+
                 else:
-                    vmin_cur, vmax_cur = vmin[icomp], vmax[icomp]
+                    vmin[icomp] = None
+                    vmax[icomp] = None
 
-                if time_freq_plot:
-                    p2.imshow(average_power, extent=extent, aspect="auto", origin="lower",
-                              picker=False, cmap='RdBu_r', vmin=vmin_cur, vmax=vmax_cur)    # cmap='RdBu', vmin=vmin, vmax=vmax)
-                    p2.set_xlabel("time [s]")
-                    p2.set_ylabel("freq. [Hz]")
-                    ax = p2.twinx()
-                    ax.set_xlim(times[idx_start], times[idx_end])
-                    ax.set_ylim(ylim_temp)
-                    ax.set_ylabel("ampl. [a.u.]")
-                    ax.plot(times[idx_start:idx_end], temporal_envelope_mean[itemp][0][idx_sort[icomp], idx_start:idx_end],
-                            color='black', linewidth=3.0)
+        if save_avg_power_list:
+            np.save('freqs.npy', freqs)
+            with open('average_power_all.list', 'wb') as f:
+                 pickle.dump(average_power_all, f)
+
+        # prav compute max value of average power for scale/plot purposes
+        avg_pwr_max = []
+        for avg in average_power_all[0]:
+            avg_pwr_max += [np.mean(avg, axis=1).max() +
+                            np.abs(np.mean(avg, axis=1).min())]
+        avg_pwr_scaled_max = np.max(avg_pwr_max)
+        print 'Average power limits ', avg_pwr_scaled_max
+
+    if perform_temporal_spectral_plotting:
+        # ------------------------------------------
+        # loop over all activations
+        # ------------------------------------------
+        plt.ioff()
+        nimg = 1
+
+        # loop over all images
+        for iimg in range(nimg):
+
+            fig = plt.figure('FourierICA plots', figsize=(11 + ntemp*10, 60))
+            idx_class = 0
+
+            # estimate how many plots on current image
+            istart_plot = int(ncomp*iimg)
+            nplot = [ncomp]
+            gs = grd.GridSpec(ncomp*20+len(key_borders)*10, (ntemp+1)*10, wspace=0.1, hspace=0.05,
+                              left=0.04, right=0.96, bottom=0.04, top=0.96)
+
+            for icomp in range(istart_plot, nplot[iimg]):
+                if (icomp + 1) in key_borders:
+                    p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+8+idx_class*10, 0:10])
+                    idx_class += 1
+                    p_text.text(0, 0, keys[idx_class-1], fontsize=25)
+                    adjust_spines(p_text, [])
+
+                # prav commented out (alternate approach to plotting)
+                # # ----------------------------------------------
+                # # plot spatial profiles (magnitude)
+                # # ----------------------------------------------
+                # # spatial profile
+                # fn_base = "IC%02d_spatial_profile.png" % (idx_sort[icomp]+1)
+                # fnin_img = join(temp_plot_dir, fn_base)
+                # spat_tmp = misc.imread(fnin_img)
+                # remove(fnin_img)
+                #
+                # # rearrange image
+                # x_size, y_size, _ = spat_tmp.shape
+                # x_half, y_half = x_size/2, y_size/2
+                # x_frame = int(0.15*x_half)
+                # y_frame = int(0.05*y_half)
+                # spatial_profile = np.concatenate((spat_tmp[x_frame:(x_half-x_frame), y_frame:(y_half-y_frame), :],
+                #                                   spat_tmp[(x_half+x_frame):-x_frame, y_frame:(y_half-y_frame), :],
+                #                                   spat_tmp[(x_half+x_frame):-x_frame, (y_half+y_frame):-y_frame, :],
+                #                                   spat_tmp[x_frame:(x_half-x_frame), (y_half+y_frame):-y_frame, :]), axis=1)
+
+                # read the montage image for lh and rh
+                fn_base_lh = "IC%02d_%s_spatial_profile.png" % (idx_sort[icomp]+1, 'lh')
+                fnin_img = join(temp_plot_dir, fn_base_lh)
+                spat_tmp_lh = misc.imread(fnin_img)
+                remove(fnin_img)
+
+                fn_base_rh = "IC%02d_%s_spatial_profile.png" % (idx_sort[icomp]+1, 'rh')
+                fnin_img = join(temp_plot_dir, fn_base_rh)
+                spat_tmp_rh = misc.imread(fnin_img)
+                remove(fnin_img)
+
+                spat_min_size = np.minimum(spat_tmp_lh.shape, spat_tmp_rh.shape)
+
+                if spat_tmp_lh.shape == spat_tmp_rh.shape:
+                    # concatenate the lh and rh side by side
+                    spatial_profile = np.concatenate((spat_tmp_lh, spat_tmp_rh), axis=1)
                 else:
-                    # plot average (across time) power spectra across frequencies
-                    # scaled for plotting purposes only
-                    avg_pwr = np.mean(average_power, axis=1) * 1e6
-                    assert avg_pwr.shape is not freqs.shape,\
-                        'Avg Power not equal to number of frequency points'
-                    p2.bar(freqs, avg_pwr + np.abs(avg_pwr.min()), width=0.4)
-                    p2.set_ylim(0., avg_pwr_scaled_max * 1e6)
-                    p2.set_xlabel('frequency [Hz]')
-                    p2.set_ylabel('power [dB]')
+                    print 'The shaped of lh/rh do not match.', spat_tmp_rh.shape, spat_tmp_lh.shape
+                    spat_tmp_rh = spat_tmp_rh[:spat_min_size[0], :spat_min_size[1], :spat_min_size[2]]
+                    spat_tmp_lh = spat_tmp_lh[:spat_min_size[0], :spat_min_size[1], :spat_min_size[2]]
+                    spatial_profile = np.concatenate((spat_tmp_lh, spat_tmp_rh), axis=1)
+                    # raise RuntimeError('Shape of lh/rh images different - %s' % (fn_base_rh))
 
-        # save image
-        if time_freq_plot:
-            fnout_complete = '%s%02d,tseries.png' % (fnout, iimg+1)
-        else:
-            fnout_complete = '%s%02d,tfbins.png' % (fnout, iimg+1)
-        if fnout:
-            print 'Saving result image at %s' % fnout_complete
-            plt.savefig(fnout_complete, format='png', dpi=300)
+                p1 = fig.add_subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+15+idx_class*10, 0:10])
+                p1.imshow(spatial_profile)
+                p1.yaxis.set_ticks([])
+                p1.xaxis.set_ticks([])
+                y_name = "IC#%02d" % (idx_sort[icomp]+1)
+                p1.set_ylabel(y_name)
 
-        # show image if requested
-        if show:
-            plt.show()
+                # ----------------------------------------------
+                # temporal/spectral profile
+                # ----------------------------------------------
+                for itemp in range(ntemp):
 
-        plt.close('FourierICA plots')
+                    if icomp == 0 and len(stim_name):
+                        p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+(idx_class-1)*10: \
+                            20*(icomp-istart_plot)+8+(idx_class-1)*10, (itemp+1)*10+4:(itemp+2)*10-1])
+                        p_text.text(0, 0, "  " + stim_name[itemp], fontsize=30)
+                        adjust_spines(p_text, [])
+
+                    times = (np.arange(win_ntsl)/sfreq + tpre)[5:-5]
+                    idx_start = np.argmin(np.abs(times - time_range[0]))
+                    idx_end = np.argmin(np.abs(times - time_range[1]))
+                    average_power = average_power_all[itemp][idx_sort[icomp]]
+                    extent = (times[idx_start], times[idx_end], freqs[0], freqs[-1])
+                    p2 = plt.subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+15+idx_class*10,
+                                     (itemp+1)*10+1:(itemp+2)*10-1])
+
+                    if global_scaling:
+                        vmin_cur, vmax_cur = np.min(vmin), np.max(vmax)
+                    else:
+                        vmin_cur, vmax_cur = vmin[icomp], vmax[icomp]
+
+                    if time_freq_plot:
+                        p2.imshow(average_power, extent=extent, aspect="auto", origin="lower",
+                                  picker=False, cmap='RdBu_r', vmin=vmin_cur, vmax=vmax_cur)    # cmap='RdBu', vmin=vmin, vmax=vmax)
+                        p2.set_xlabel("time [s]")
+                        p2.set_ylabel("freq. [Hz]")
+                        ax = p2.twinx()
+                        ax.set_xlim(times[idx_start], times[idx_end])
+                        ax.set_ylim(ylim_temp)
+                        ax.set_ylabel("ampl. [a.u.]")
+                        ax.plot(times[idx_start:idx_end], temporal_envelope_mean[itemp][0][idx_sort[icomp], idx_start:idx_end],
+                                color='black', linewidth=3.0)
+                    else:
+                        # plot average (across time) power spectra across frequencies
+                        # scaled for plotting purposes only
+                        avg_pwr = np.mean(average_power, axis=1) * 1e6
+                        assert avg_pwr.shape is not freqs.shape,\
+                            'Avg Power not equal to number of frequency points'
+                        p2.bar(freqs, avg_pwr + np.abs(avg_pwr.min()), width=0.4)
+                        p2.set_ylim(0., avg_pwr_scaled_max * 1e6)
+                        p2.set_xlabel('frequency [Hz]')
+                        p2.set_ylabel('power [dB]')
+
+            # save image
+            if time_freq_plot:
+                fnout_complete = '%s%02d,tseries.png' % (fnout, iimg+1)
+            else:
+                fnout_complete = '%s%02d,tfbins.png' % (fnout, iimg+1)
+            if fnout:
+                print 'Saving result image at %s' % fnout_complete
+                plt.savefig(fnout_complete, format='png', dpi=300)
+
+            # show image if requested
+            if show:
+                plt.show()
+
+            plt.close('FourierICA plots')
 
     # remove temporary directory for
     # spatial profile plots
