@@ -20,6 +20,7 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import numpy as np
 
+
 #######################################################
 #                                                     #
 #          plotting functions for FourierICA          #
@@ -444,11 +445,11 @@ def ICs_topoplot(A_orig, info, picks, fnout=None, show=True):
     plt.close('Topoplots')
     plt.ion()
 
+
+
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # plot results
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 def plot_results(fourier_ica_obj, meg_data,
                  W_orig, A_orig, info, picks,
                  cluster_quality=[], fnout=None,
@@ -484,7 +485,6 @@ def plot_results(fourier_ica_obj, meg_data,
             Otherwise only the first 10 components are plotted.
             default: plot_all=True
     """
-
     # ------------------------------------------
     # import necessary modules
     # ------------------------------------------
@@ -535,9 +535,7 @@ def plot_results(fourier_ica_obj, meg_data,
 
     # loop over all images
     for iimg in range(nimg):
-
         fig = plt.figure('FourierICA plots', figsize=(18, 14))
-
         # estimate how many plots on current image
         istart_plot = int(10*iimg)
         nplot = np.min([10*(iimg+1), ncomp])
@@ -675,7 +673,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                            morph2fsaverage=False,
                            subject='fsaverage',
                            subjects_dir=None,
-                           src_fname=None,
                            temporal_envelope=[],
                            time_range=[None, None],
                            global_scaling=False,
@@ -689,7 +686,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
     Parameters
     ----------
-    #TODO
     """
 
     # ------------------------------------------
@@ -705,7 +701,10 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     from os.path import exists, join, isfile
     from scipy import fftpack, misc
     import types
+
+    # prav
     import time
+    import pickle
 
     from mne import stc_to_label
     from mne import read_source_spaces
@@ -714,8 +713,13 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     from jumeg.jumeg_utils import (subtract_overlapping_vertices,
                                    apply_percentile_threshold,
                                    get_cmap)
-    import pickle
+
     assert round(sfreq, 2) == 678.17, 'Error: Sampling frequency mismatch !'
+
+    # my flags
+    # set this flag to either plot timeseries or freq/power spectra bins
+    time_freq_plot = False
+    process_as_labels = True
 
     # -------------------------------------------
     # check input parameter
@@ -735,18 +739,18 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     startfftind = int(np.floor(flow * win_length_sec))
     ncomp, nvoxel = W_orig.shape
     nfreq, nepochs, nvoxel = src_loc_data.shape
-    print 'win_ntsl time slice window %d' % win_ntsl
-    print 'number of components %d' % ncomp
-    print 'number of voxels %d' % nvoxel
-    print 'nfreq, nepochs = %f, %f' % (nfreq, nepochs)
-    process_as_labels = True
 
     if time_range == [None, None]:
         time_range = [tpre, tpre + win_length_sec]
 
-    # generate spatial profiles (using magnitude and phase)
+    # -------------------------------------------
+    # generate spatial profiles
+    # (using magnitude and phase)
+    # -------------------------------------------
     if not subjects_dir:
         subjects_dir = environ.get('SUBJECTS_DIR')
+
+    print 'Subjects dirs: %s' % subjects_dir
 
     if isinstance(A_orig[0, 0], types.ComplexType):
         A_orig_mag = np.abs(A_orig)
@@ -769,6 +773,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     # given or should be estimated
     # -------------------------------------------
     if not np.any(temporal_envelope):
+        print 'Error'
         # -------------------------------------------
         # get independent components
         # -------------------------------------------
@@ -790,7 +795,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 temporal_envelope[iepoch, :, :] = act[:, iepoch, :].real
 
             else:
+                # -------------------------------------------
                 # generate temporal profiles
+                # -------------------------------------------
                 # apply inverse STFT to get temporal envelope
                 fft_act[:, startfftind:(startfftind+nfreq)] = act[:, iepoch, :]
                 temporal_envelope[iepoch, :, :] = fftpack.ifft(fft_act, n=win_ntsl, axis=1).real
@@ -806,6 +813,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
         key_borders = np.insert(key_borders, 0, 1)
         key_borders = np.cumsum(key_borders)[:-1]
+
     else:
         idx_sort = np.arange(ncomp)
 
@@ -817,8 +825,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     temporal_envelope_mean = np.empty((ntemp, 0)).tolist()
 
     for itemp in range(ntemp):
-        temporal_envelope_mean[itemp].append(
-            np.mean(temporal_envelope[itemp][0], axis=0)[:, 5:-5])
+        temporal_envelope_mean[itemp].append(np.mean(temporal_envelope[itemp][0], axis=0)[:, 5:-5])
 
     # scale temporal envelope between 0 and 1
     min_val = np.min(temporal_envelope_mean)
@@ -826,12 +833,11 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     scale_fact = 1.0 / (max_val - min_val)
 
     for itemp in range(ntemp):
-        temporal_envelope_mean[itemp][0] =\
-            np.clip(scale_fact * temporal_envelope_mean[itemp][0] -
-                    scale_fact * min_val, 0., 1.)
+        temporal_envelope_mean[itemp][0] = np.clip(scale_fact * temporal_envelope_mean[itemp][0] - scale_fact * min_val, 0., 1.)
 
     ylim_temp = [-0.05, 1.05]
 
+    # prav
     # read the source space here
     src_fname = join(subjects_dir, subject, 'bem', subject + '-ico-4-src.fif')
     if isfile(src_fname):
@@ -853,13 +859,11 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         print 'Generating spatial profiles for %d of %d' % (icomp, ncomp)
         # generate stc-object from current component
         A_cur = A_orig_mag[:, icomp]
-        prav_test = False
-        if prav_test:
-            vertno = [vertno[0], vertno[1]]
 
-        src_loc = _make_stc(A_cur[:, np.newaxis], vertices=vertno, tmin=0,
-                            tstep=1, subject=subject)
+        src_loc = _make_stc(A_cur[:, np.newaxis], vertices=vertno, tmin=0, tstep=1,
+                            subject=subject)
 
+        # prav
         # save the source time courses
         src_loc_name = "IC%02d_src_loc" % (icomp + 1)
         src_loc.save(join(stcs_plot_dir, src_loc_name))
@@ -871,19 +875,18 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         clim = {'kind': 'value',
                 'lims': [fmin, fmid, fmax]}
 
-        for hemi in ['lh', 'rh']:
-            # plot spatial profiles
-            brain = src_loc.plot(surface='inflated', hemi=hemi,
-                                 subjects_dir=subjects_dir,
-                                 config_opts={'cortex': 'bone'}, views=['lat'],
-                                 time_label=' ', colorbar=False, clim=clim)
-            time.sleep(1)
-            # save results
-            fn_base = "IC%02d_%s_spatial_profile.png" % (icomp + 1, hemi)
-            fnout_montage = join(temp_plot_dir, fn_base)
-            brain.save_montage(fnout_montage, order=['lat', 'med'])
-            brain.close()
+        # plot spatial profiles
+        brain = src_loc.plot(surface='inflated', hemi='split', subjects_dir=subjects_dir,
+                             config_opts={'cortex': 'bone'}, views=['lateral', 'medial'],
+                             time_label=' ', colorbar=False, clim=clim)
 
+        # save results
+        fn_base = "IC%02d_spatial_profile.png" % (icomp+1)
+        fnout_img = join(temp_plot_dir, fn_base)
+        brain.save_image(fnout_img)
+        brain.close()
+
+        # prav
         if process_as_labels:
             # convert stc to labels based on percentile, convert to labels and
             # create annotations with the labels
@@ -908,6 +911,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                             piece.name = 'FICA_label_IC%02d' % (icomp + 1)
                             label_pieces += [piece]
 
+    # prav
     if process_as_labels:
         # make array of label sizes and choose mean as threshold
         vert = []
@@ -943,7 +947,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     average_power_all = np.empty((ntemp, 0)).tolist()
     vmin = np.zeros(ncomp)
     vmax = np.zeros(ncomp)
-
+    print 'generating power data'
     for itemp in range(ntemp):
         for icomp in range(ncomp):
 
@@ -955,15 +959,13 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             data_stockwell = temporal_envelope[itemp][0][:, icomp, idx_start:idx_end].\
                 reshape((nepochs, 1, idx_end-idx_start))
 
-            print 'sfreq %f, times %f before stockwell power ' % (sfreq, times.size)
+
             power_data, _, freqs = _induced_power_stockwell(data_stockwell, sfreq=sfreq, fmin=flow,
                                                             fmax=fhigh, width=1.0, decim=1,
                                                             return_itc=False, n_jobs=4)
 
             # perform baseline correction
             if time_range[0] < 0:
-                print 'Performing baseline correction of power...'
-                # power_data = rescale(power_data, times[idx_start+15:idx_end-15], (None, 0), 'percent')
                 power_data = rescale(power_data, times[idx_start:idx_end], (None, 0), 'mean')
                 imax = np.argmin(np.abs(times[idx_start:idx_end]))
                 power_data /= np.sqrt(np.std(power_data[..., :imax], axis=-1)[..., None])
@@ -977,6 +979,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 # vmin[icomp] = np.min((np.nanmin(average_power), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
                 vmax[icomp] = np.max((np.percentile(average_power, 99), vmax[icomp]))  # np.percentile(average_power_all, 99.9)
                 vmin[icomp] = np.min((np.percentile(average_power, 1), vmin[icomp]))  # np.percentile(average_power_all, 0.1)
+
 
                 if np.abs(vmax[icomp]) > np.abs(vmin[icomp]):
                     vmin[icomp] = - np.abs(vmax[icomp])
@@ -1028,28 +1031,25 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 p_text.text(0, 0, keys[idx_class-1], fontsize=25)
                 adjust_spines(p_text, [])
 
-            # read the montage image for lh and rh
-            fn_base_lh = "IC%02d_%s_spatial_profile.png" % (idx_sort[icomp]+1, 'lh')
-            fnin_img = join(temp_plot_dir, fn_base_lh)
-            spat_tmp_lh = misc.imread(fnin_img)
+            # ----------------------------------------------
+            # plot spatial profiles (magnitude)
+            # ----------------------------------------------
+            # spatial profile
+            fn_base = "IC%02d_spatial_profile.png" % (idx_sort[icomp]+1)
+            fnin_img = join(temp_plot_dir, fn_base)
+            spat_tmp = misc.imread(fnin_img)
             remove(fnin_img)
 
-            fn_base_rh = "IC%02d_%s_spatial_profile.png" % (idx_sort[icomp]+1, 'rh')
-            fnin_img = join(temp_plot_dir, fn_base_rh)
-            spat_tmp_rh = misc.imread(fnin_img)
-            remove(fnin_img)
+            # rearrange image
+            x_size, y_size, _ = spat_tmp.shape
+            x_half, y_half = x_size/2, y_size/2
+            x_frame = int(0.15*x_half)
+            y_frame = int(0.05*y_half)
+            spatial_profile = np.concatenate((spat_tmp[x_frame:(x_half-x_frame), y_frame:(y_half-y_frame), :],
+                                              spat_tmp[(x_half+x_frame):-x_frame, y_frame:(y_half-y_frame), :],
+                                              spat_tmp[(x_half+x_frame):-x_frame, (y_half+y_frame):-y_frame, :],
+                                              spat_tmp[x_frame:(x_half-x_frame), (y_half+y_frame):-y_frame, :]), axis=1)
 
-            spat_min_size = np.minimum(spat_tmp_lh.shape, spat_tmp_rh.shape)
-
-            if spat_tmp_lh.shape == spat_tmp_rh.shape:
-                # concatenate the lh and rh side by side
-                spatial_profile = np.concatenate((spat_tmp_lh, spat_tmp_rh), axis=1)
-            else:
-                print 'The shaped of lh/rh do not match.', spat_tmp_rh.shape, spat_tmp_lh.shape
-                spat_tmp_rh = spat_tmp_rh[:spat_min_size[0], :spat_min_size[1], :spat_min_size[2]]
-                spat_tmp_lh = spat_tmp_lh[:spat_min_size[0], :spat_min_size[1], :spat_min_size[2]]
-                spatial_profile = np.concatenate((spat_tmp_lh, spat_tmp_rh), axis=1)
-                # raise RuntimeError('Shape of lh/rh images different - %s' % (fn_base_rh))
 
             p1 = fig.add_subplot(gs[20*(icomp-istart_plot)+idx_class*10:20*(icomp-istart_plot)+15+idx_class*10, 0:10])
             p1.imshow(spatial_profile)
@@ -1058,17 +1058,18 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             y_name = "IC#%02d" % (idx_sort[icomp]+1)
             p1.set_ylabel(y_name)
 
+
             # ----------------------------------------------
             # temporal/spectral profile
             # ----------------------------------------------
             for itemp in range(ntemp):
 
                 if icomp == 0 and len(stim_name):
-                    p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+(idx_class-1)*10:
-                                             20*(icomp-istart_plot)+8+(idx_class-1)*10,
-                                             (itemp+1)*10+4:(itemp+2)*10-1])
+                    p_text = fig.add_subplot(gs[20*(icomp-istart_plot)+(idx_class-1)*10: \
+                        20*(icomp-istart_plot)+8+(idx_class-1)*10, (itemp+1)*10+4:(itemp+2)*10-1])
                     p_text.text(0, 0, "  " + stim_name[itemp], fontsize=30)
                     adjust_spines(p_text, [])
+
 
                 times = (np.arange(win_ntsl)/sfreq + tpre)[5:-5]
                 idx_start = np.argmin(np.abs(times - time_range[0]))
@@ -1083,11 +1084,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 else:
                     vmin_cur, vmax_cur = vmin[icomp], vmax[icomp]
 
-                # set this flag to either plot timeseries or freq/power spectra bins
-                time_freq_plot = False
                 if time_freq_plot:
                     p2.imshow(average_power, extent=extent, aspect="auto", origin="lower",
-                              picker=False, cmap='RdBu', vmin=vmin_cur, vmax=vmax_cur)
+                              picker=False, cmap='RdBu_r', vmin=vmin_cur, vmax=vmax_cur)    # cmap='RdBu', vmin=vmin, vmax=vmax)
                     p2.set_xlabel("time [s]")
                     p2.set_ylabel("freq. [Hz]")
                     ax = p2.twinx()
@@ -1100,8 +1099,8 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                     # plot average (across time) power spectra across frequencies
                     # scaled for plotting purposes only
                     avg_pwr = np.mean(average_power, axis=1) * 1e6
-                    assert avg_pwr.shape is not freqs.shape, 'Avg Power not equal to number of frequency points'
-                    print avg_pwr_scaled_max
+                    assert avg_pwr.shape is not freqs.shape,\
+                        'Avg Power not equal to number of frequency points'
                     p2.bar(freqs, avg_pwr + np.abs(avg_pwr.min()), width=0.4)
                     p2.set_ylim(0., avg_pwr_scaled_max * 1e6)
                     p2.set_xlabel('frequency [Hz]')
@@ -1113,6 +1112,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         else:
             fnout_complete = '%s%02d,tfbins.png' % (fnout, iimg+1)
         if fnout:
+            print 'Saving result image at %s' % fnout_complete
             plt.savefig(fnout_complete, format='png', dpi=300)
 
         # show image if requested
