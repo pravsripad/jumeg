@@ -399,7 +399,8 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
                           stim_id=1, stim_delay=0,
-                          subjects_dir=None):
+                          subjects_dir=None, parc_fname='fourier_ica_test',
+                          stc_folder_fname='gica_stcs_test'):
 
     """
     Interface to plot the results from group FourierICA
@@ -475,4 +476,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
                            morph2fsaverage=icasso_obj.morph2fsaverage,
                            temporal_envelope=temporal_envelope,
                            classification=classification,
+                           parc_fname='fourier_ica_test',
+                           stc_folder_fname='gica_stcs_test',
                            show=False)

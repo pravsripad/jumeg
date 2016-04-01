@@ -676,7 +676,8 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                            temporal_envelope=[],
                            time_range=[None, None],
                            global_scaling=False,
-                           classification={},
+                           classification={}, parc_fname='fourier_ica_test',
+                           stc_folder_fname='gica_stcs_test',
                            percentile=97, show=True):
 
     """
@@ -767,7 +768,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         makedirs(temp_plot_dir)
 
     # create temporary directory to save stcs
-    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs')
+    stcs_plot_dir = join(subjects_dir, subject, stc_folder_fname)
     if not exists(stcs_plot_dir):
         makedirs(stcs_plot_dir)
 
@@ -934,7 +935,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
         if save_labels:
             # save labels as annot TODO - change the name below
-            parc_fname = 'fourier_ica_test'
             print 'Writing labels to annot %s' % parc_fname
             write_labels_to_annot(final_labels, subject='fsaverage',
                                   parc=parc_fname, subjects_dir=subjects_dir,
