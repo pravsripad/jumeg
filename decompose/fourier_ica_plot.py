@@ -720,6 +720,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     # set this flag to either plot timeseries or freq/power spectra bins
     time_freq_plot = False
     process_as_labels = True
+    # prav save the average_power_all list
+    save_avg_power_list = False
+    save_labels = True
 
     # -------------------------------------------
     # check input parameter
@@ -764,7 +767,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         makedirs(temp_plot_dir)
 
     # create temporary directory to save stcs
-    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs_realEO')
+    stcs_plot_dir = join(subjects_dir, subject, 'gica_stcs')
     if not exists(stcs_plot_dir):
         makedirs(stcs_plot_dir)
 
@@ -929,10 +932,10 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         print 'Number of labels before reduction ', len(label_pieces)
         print 'Number of labels after reduction ', len(final_labels)
 
-        save_labels = True
         if save_labels:
             # save labels as annot TODO - change the name below
             parc_fname = 'fourier_ica_test'
+            print 'Writing labels to annot %s' % parc_fname
             write_labels_to_annot(final_labels, subject='fsaverage',
                                   parc=parc_fname, subjects_dir=subjects_dir,
                                   overwrite=True)
@@ -947,7 +950,7 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     average_power_all = np.empty((ntemp, 0)).tolist()
     vmin = np.zeros(ncomp)
     vmax = np.zeros(ncomp)
-    print 'generating power data'
+    print 'Generating power data..'
     for itemp in range(ntemp):
         for icomp in range(ncomp):
 
@@ -958,7 +961,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
 
             data_stockwell = temporal_envelope[itemp][0][:, icomp, idx_start:idx_end].\
                 reshape((nepochs, 1, idx_end-idx_start))
-
 
             power_data, _, freqs = _induced_power_stockwell(data_stockwell, sfreq=sfreq, fmin=flow,
                                                             fmax=fhigh, width=1.0, decim=1,
@@ -990,8 +992,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                 vmin[icomp] = None
                 vmax[icomp] = None
 
-    # prav save the average_power_all list
-    save_avg_power_list = False
     if save_avg_power_list:
         np.save('freqs.npy', freqs)
         with open('average_power_all.list', 'wb') as f:
@@ -1003,7 +1003,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
         avg_pwr_max += [np.mean(avg, axis=1).max() +
                         np.abs(np.mean(avg, axis=1).min())]
     avg_pwr_scaled_max = np.max(avg_pwr_max)
-    print 'Average max power ', avg_pwr_max
     print 'Average power limits ', avg_pwr_scaled_max
 
     # ------------------------------------------
@@ -1058,7 +1057,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
             y_name = "IC#%02d" % (idx_sort[icomp]+1)
             p1.set_ylabel(y_name)
 
-
             # ----------------------------------------------
             # temporal/spectral profile
             # ----------------------------------------------
@@ -1069,7 +1067,6 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
                         20*(icomp-istart_plot)+8+(idx_class-1)*10, (itemp+1)*10+4:(itemp+2)*10-1])
                     p_text.text(0, 0, "  " + stim_name[itemp], fontsize=30)
                     adjust_spines(p_text, [])
-
 
                 times = (np.arange(win_ntsl)/sfreq + tpre)[5:-5]
                 idx_start = np.argmin(np.abs(times - time_range[0]))
