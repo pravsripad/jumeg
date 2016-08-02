@@ -720,9 +720,9 @@ def plot_results_src_space(fourier_ica_obj, W_orig, A_orig,
     # prav my flags
     # set this flag to either plot timeseries or freq/power spectra bins
     time_freq_plot = False
-    process_as_labels = True
+    process_as_labels = False
 
-    save_labels = True
+    save_labels = False
     compute_spectral_power = False
     # save the average_power_all list
     save_avg_power_list = False

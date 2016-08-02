@@ -17,7 +17,8 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # define some global file ending pattern
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-inv_pattern = "-src-meg-inv.fif"
+#inv_pattern = ",meg-inv.fif"
+inv_pattern = "-inv.fif" # changed inv pattern (maybe should be argument?)
 img_src_group_ica = ",src_group_ICA"
 
 
@@ -33,7 +34,8 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
                                hamming_data=True, remove_outliers=True,
                                complex_mixing=True, max_iter=2000,
                                conv_eps=1e-9, lrate=0.2, cost_function='g2',
-                               envelopeICA=False, verbose=True):
+                               envelopeICA=False, verbose=True,
+                               fn_base='group_ICA_resting_state.obj'):
 
 
     """
@@ -47,7 +49,7 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
             less memory!
             default: average=False
         stim_name: name of the stimulus channel. Note, for
-            applying FourierCIA data are chopped around stimulus
+            applying FourierICA data are chopped around stimulus
             onset. If not set data are chopped in overlapping
             windows
             default: stim_names=None
@@ -108,10 +110,10 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
             handle as an optional parameter.
             remove_outliers=True
         complex_mixing:
-        max_iter:  maximum number od iterations used in FourierICA
+        max_iter:  maximum number of iterations used in FourierICA
             default: max_iter=2000
-        conv_eps: teration stops when weight changes are smaller
-            then this number
+        conv_eps: Iteration stops when weight changes are smaller
+            than this number
             default: conv_eps = 1e-9
         lrate: initial learning rate
             default: lrate=0.2
@@ -201,7 +203,8 @@ def group_fourierICA_src_space(fname_raw, average=False, stim_name=None,
     if stim_id:
         fn_base = "group_ICA_%02ddB.obj" % (stim_id)
     else:
-        fn_base = "group_ICA_resting_state.obj"
+        # fn_base = "group_ICA_resting_state.obj"
+        fn_base = fn_base
 
     fnout = join(dirname(dirname(fn_list[0])), fn_base)
     with open(fnout, "wb") as filehandler:
@@ -311,6 +314,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             # ------------------------------------------
             # get some parameter
             fn_raw = fn_list[idx]
+            print 'file being processed.. %s' % fn_raw
             tmin, tmax = icasso_obj.tmin_win, icasso_obj.tmax_win
             win_length_sec = (tmax - tmin)
 
@@ -333,8 +337,6 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             dmean = np.mean(Xmat_c, axis=0).reshape((1, nvoxel))
             dstd = np.std(Xmat_c, axis=0).reshape((1, nvoxel))
 
-
-
             # -------------------------------------------
             # get some parameter
             # -------------------------------------------
@@ -347,7 +349,6 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
             startfftind = int(np.floor(icasso_obj.flow * win_length_sec))
             fft_act = np.zeros((ncomp, win_ntsl), dtype=np.complex)
 
-
             # -------------------------------------------
             # define result arrays
             # -------------------------------------------
@@ -358,7 +359,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
                 temporal_envelope = np.zeros((nfn_list*nwindows, ncomp, win_ntsl))
 
             idx_start = idx * nwindows
-
+            print 'nwindows %f' % nwindows
 
             # -------------------------------------------
             # loop over all epochs
@@ -369,7 +370,6 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
                 src_loc_zero_mean = (src_loc[:, iepoch, :] - np.dot(np.ones((fftsize, 1)), dmean)) / \
                                     np.dot(np.ones((fftsize, 1)), dstd)
 
-                # activations in both hemispheres
                 act[:, idx_start+iepoch, :] = np.dot(groupICA_obj['W_orig'], src_loc_zero_mean.transpose())
 
                 # generate temporal profiles:
@@ -386,12 +386,7 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
         # -------------------------------------------
         temporal_envelope_all[istim].append(temporal_envelope.real)
 
-
-
     return temporal_envelope_all, src_loc, vert, sfreq
-
-
-
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -399,7 +394,8 @@ def get_group_fourierICA_time_courses(groupICA_obj, event_id=None,
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
                           stim_id=1, stim_delay=0,
-                          subjects_dir=None, parc_fname='fourier_ica_test',
+                          subjects_dir=None,
+                          parc_fname='fourier_ica_test',
                           stc_folder_fname='gica_stcs_test'):
 
     """
@@ -424,7 +420,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
             default: subjects_dir=None
     """
 
-
     # ------------------------------------------
     # import necessary modules
     # ------------------------------------------
@@ -435,7 +430,6 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
     # set log level to 'WARNING'
     set_log_level('WARNING')
 
-
     # ------------------------------------------
     # read in group FourierICA object
     # ------------------------------------------
@@ -445,13 +439,11 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
     icasso_obj = groupICA_obj['icasso_obj']
     win_length_sec = icasso_obj.tmax_win - icasso_obj.tmin_win
 
-
     # ------------------------------------------
     # get temporal envelope
     # ------------------------------------------
     temporal_envelope, src_loc, vert, sfreq = \
         get_group_fourierICA_time_courses(groupICA_obj)
-
 
     # ------------------------------------------
     # plot "group" results
@@ -461,9 +453,8 @@ def plot_group_fourierICA(fn_groupICA_obj, stim_name=None,
     else:
         classification = []
 
-
     fnout_src_fourier_ica = fn_groupICA_obj[:fn_groupICA_obj.rfind('.obj')] + \
-                            img_src_group_ica
+        img_src_group_ica
 
     plot_results_src_space(groupICA_obj['fourier_ica_obj'],
                            groupICA_obj['W_orig'], groupICA_obj['A_orig'],
