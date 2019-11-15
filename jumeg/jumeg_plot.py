@@ -237,7 +237,7 @@ def plot_performance_artifact_rejection(meg_raw, ica, fnout_fig,
     # save image
     pl.savefig(fnout_fig + '.png', format='png')
     pl.close('performance image')
-    pl.ion()
+    # pl.ion()
 
     return perf_art_rej
 
@@ -840,4 +840,4 @@ def plot_histo_fit_gaussian(orig_data, nbins=100, facecol='blue',
     if fnout:
         pl.savefig(fnout)
 
-    return fig    
+    return fig

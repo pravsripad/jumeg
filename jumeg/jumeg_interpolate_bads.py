@@ -48,7 +48,7 @@ def interpolate_bads(inst, reset_bads=True, mode='accurate', origin=None, verbos
     if getattr(inst, 'preload', None) is False:
         raise ValueError('Data must be preloaded.')
 
-    _interpolate_bads_eeg(inst)
+    _interpolate_bads_eeg(inst, origin)
     _interpolate_bads_meg(inst, origin=origin, mode=mode)
 
     if reset_bads is True:
