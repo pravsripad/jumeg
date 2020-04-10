@@ -1,0 +1,910 @@
+:orphan:
+
+
+
+.. _sphx_glr_auto_examples:
+
+JUMEG Examples
+==================
+
+Here are various examples using various JUMEG tools. 
+
+
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_causality:
+
+Causality
+=========
+
+Causality related tools.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example showing how to plot a causality matrix on a circle plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/causality/images/thumb/sphx_glr_plot_causality_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_causality_plot_causality_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/causality/plot_causality_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Uses the data and example from mne-python combined with the Scot package to perform the Granger...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/causality/images/thumb/sphx_glr_do_granger_causality_thumb.png
+
+     :ref:`sphx_glr_auto_examples_causality_do_granger_causality.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/causality/do_granger_causality
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_connectivity:
+
+Connectivity
+============
+
+Various functional connectivity related tools.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot degree values for a given set of nodes in a simple circle plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_degree_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_degree_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_degree_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="mainly using functions from within mne.label.grow_labels">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_vertices_around_seed_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_vertices_around_seed.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_vertices_around_seed
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example exposing the plot_labelled_group_connectivity_circle function.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_labelled_connectivity_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_labelled_connectivity_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_labelled_connectivity_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compute interhemispherical laterality between brain hemispheres.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_compute_interhemispherical_laterality_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_compute_interhemispherical_laterality.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_compute_interhemispherical_laterality
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot grouped connectivity circle with these grouped labels for the Destriux atlas.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_destriux_atlas_based_connectivity_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_destriux_atlas_based_connectivity.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_destriux_atlas_based_connectivity
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script showing various methods used to generate surrogate from a time series.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_surrogate_methods_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_surrogate_methods.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_surrogate_methods
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Nilearn (https://nilearn.github.io/)">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_brain_connectome_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_brain_connectome.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_brain_connectome
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Read grouped aparc labels from yaml file and plot grouped connectivity circle">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_grouped_connectivity_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_grouped_connectivity_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_grouped_connectivity_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script to show functionality to plot centrality indices along with connectivity circle plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_circle_lines_and_blobs_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_circle_lines_and_blobs.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_circle_lines_and_blobs
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script exposing circle plots with outer ring.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_generic_grouped_connectivity_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_generic_grouped_connectivity_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_generic_grouped_connectivity_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="1. Read ROIs of standard regions involved in resting state networks from literature.    (the da...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_annot_standard_rsns_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_annot_standard_rsns.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_annot_standard_rsns
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script to show functionality to plot centrality indices along with">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_test_plot_circle_lines_and_blobs_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_test_plot_circle_lines_and_blobs.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/test_plot_circle_lines_and_blobs
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script show how to compute and visualize distance between label center of masses.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_compute_label_distances_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_compute_label_distances.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_compute_label_distances
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example to show surrogate generation on Epochs using the jumeg Surrogates module.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_compute_epochs_surrogates_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_compute_epochs_surrogates.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_compute_epochs_surrogates
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="To plot a vertex point, convert it to MNI coordinates and then reconvert it back to RAS to obta...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_test_transform_mni_to_ras_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_test_transform_mni_to_ras.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_test_transform_mni_to_ras
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example to show surrogate generation on STCs using the jumeg Surrogates module.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_generate_surrogate_stcs_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_stcs.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_generate_surrogate_stcs
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Shuffle channels&#x27; data in the time domain and plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_shuffle_time_slices_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_shuffle_time_slices.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_shuffle_time_slices
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot degree values for a given set of nodes in a simple circle plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_test_plot_degree_circle_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_test_plot_degree_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/test_plot_degree_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script to plot label distances on circle and connectome plots.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_label_distances_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_label_distances.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_label_distances
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot Networkx Communities on a connectome plot.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_communities_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_communities.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_communities
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot the visualization of the standard resting state network on the connectivity circle plot sh...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_standard_resting_network_on_aparc_annot_map_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_standard_resting_network_on_aparc_annot_map.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_standard_resting_network_on_aparc_annot_map
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Script showing surrogate computation.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_generate_surrogate_connectivity_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_connectivity.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_generate_surrogate_connectivity
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Modified MNE-Python example script.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_connectivity_between_standard_rsns_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_connectivity_between_standard_rsns.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_connectivity_between_standard_rsns
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Simple implementations of connectivity measures.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_plot_simulated_connectivity_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_plot_simulated_connectivity.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/plot_simulated_connectivity
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Test script for trying plotting routines involving degree + Connectivity">
+
+.. only:: html
+
+ .. figure:: /auto_examples/connectivity/images/thumb/sphx_glr_test_degree_circle_plotting_thumb.png
+
+     :ref:`sphx_glr_auto_examples_connectivity_test_degree_circle_plotting.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/connectivity/test_degree_circle_plotting
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_decompose:
+
+ICA Decomposition
+=================
+
+Examples showing various ICA based decomposition methods and related functionality.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compute infomax ICA on raw data.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_test_plot_powerspectrum_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_test_plot_powerspectrum.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/test_plot_powerspectrum
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compute infomax ICA on raw data.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_test_verbose_infomax_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_test_verbose_infomax.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/test_verbose_infomax
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example script to estimate the rank of the given data array.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_test_plot_rank_estimation_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_test_plot_rank_estimation.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/test_plot_rank_estimation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot a given data distribution compared with a standard Gaussian distribution.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_plot_data_distribution_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_plot_data_distribution.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/plot_data_distribution
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compare pca_mean_ and pre_whitener_ for: mne &amp; filtered data, jumeg &amp; filtered data, jumeg &amp; un...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_do_compare_ica_methods_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_do_compare_ica_methods.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/do_compare_ica_methods
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Estimate the rank of the given data array.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_plot_rank_estimation_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_plot_rank_estimation.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/plot_rank_estimation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compute ICA object based on filtered and downsampled data.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/decompose/images/thumb/sphx_glr_do_MLICA_thumb.png
+
+     :ref:`sphx_glr_auto_examples_decompose_do_MLICA.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/decompose/do_MLICA
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_mft:
+
+MFT
+===
+
+Examples showing the python implementation of MFT.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a surface based forward solution.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/mft/images/thumb/sphx_glr_plot_perform_mft_surface_thumb.png
+
+     :ref:`sphx_glr_auto_examples_mft_plot_perform_mft_surface.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/mft/plot_perform_mft_surface
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a surface based forward solution.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/mft/images/thumb/sphx_glr_plot_perform_mft_surface_list_thumb.png
+
+     :ref:`sphx_glr_auto_examples_mft_plot_perform_mft_surface_list.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/mft/plot_perform_mft_surface_list
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a volume based forward solution.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/mft/images/thumb/sphx_glr_plot_perform_mft_volume_thumb.png
+
+     :ref:`sphx_glr_auto_examples_mft_plot_perform_mft_volume.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/mft/plot_perform_mft_volume
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_preprocessing:
+
+Preprocessing
+=============
+
+Preprocessing tools for filtering, bad channel detection etc.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example code to use the jumeg suggest bads functionality.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_suggest_bads_thumb.png
+
+     :ref:`sphx_glr_auto_examples_preprocessing_plot_suggest_bads.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/preprocessing/plot_suggest_bads
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use suggest_bads to automatically identify bad MEG channels and use interpolate_bads based on t...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_interpolate_bads_thumb.png
+
+     :ref:`sphx_glr_auto_examples_preprocessing_plot_interpolate_bads.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/preprocessing/plot_interpolate_bads
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Comparison of the various filters available for use in mne/jumeg.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_compare_jumeg_filters_thumb.png
+
+     :ref:`sphx_glr_auto_examples_preprocessing_plot_compare_jumeg_filters.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/preprocessing/plot_compare_jumeg_filters
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-gallery
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Python source code: auto_examples_python.zip <//Users/psripad/mne/jumeg/docs/auto_examples/auto_examples_python.zip>`
+
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//Users/psripad/mne/jumeg/docs/auto_examples/auto_examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

@@ -1,0 +1,6 @@
+jumeg.connectivity.plot\_degree\_circle
+=======================================
+
+.. currentmodule:: jumeg.connectivity
+
+.. autofunction:: plot_degree_circle

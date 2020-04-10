@@ -1,0 +1,16 @@
+
+:orphan:
+
+.. _sphx_glr_auto_examples_preprocessing_sg_execution_times:
+
+Computation times
+=================
+**02:05.676** total execution time for **auto_examples_preprocessing** files:
+
++---------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_preprocessing_plot_interpolate_bads.py` (``plot_interpolate_bads.py``)           | 00:58.484 | 0.0 MB |
++---------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_preprocessing_plot_suggest_bads.py` (``plot_suggest_bads.py``)                   | 00:50.279 | 0.0 MB |
++---------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_preprocessing_plot_compare_jumeg_filters.py` (``plot_compare_jumeg_filters.py``) | 00:16.913 | 0.0 MB |
++---------------------------------------------------------------------------------------------------------------+-----------+--------+
