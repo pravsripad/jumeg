@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>&lt;no title&gt; &#8212; jumeg 0.18 documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          jumeg</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.18</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../index.html">Examples</a></li>
+                <li><a href="../../api.html">API</a></li>
+                <li><a href="https://github.com/jdammers/jumeg">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul class="simple">
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-connectivity-test-degree-circle-plotting-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<p class="sphx-glr-example-title" id="sphx-glr-auto-examples-connectivity-test-degree-circle-plotting-py">Test script for trying plotting routines involving degree + Connectivity
+circle plots.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">mne</span>
+
+<span class="kn">from</span> <span class="nn">jumeg</span> <span class="kn">import</span> <span class="n">get_jumeg_path</span>
+<span class="kn">from</span> <span class="nn">jumeg.connectivity</span> <span class="kn">import</span> <span class="n">plot_degree_circle</span><span class="p">,</span> <a href="../../generated/jumeg.connectivity.plot_lines_and_blobs.html#jumeg.connectivity.plot_lines_and_blobs" title="View documentation for jumeg.connectivity.plot_lines_and_blobs"><span class="n">plot_lines_and_blobs</span></a>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">orig_labels_fname</span> <span class="o">=</span> <span class="n">get_jumeg_path</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/data/desikan_label_names.yaml&#39;</span>
+<span class="n">yaml_fname</span> <span class="o">=</span> <span class="n">get_jumeg_path</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/data/desikan_aparc_cortex_based_grouping.yaml&#39;</span>
+<span class="n">con_fname</span> <span class="o">=</span> <span class="n">get_jumeg_path</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/data/sample,aparc-con.npy&#39;</span>
+
+<span class="c1"># real connectivity</span>
+<span class="n">con</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.load.html#numpy.load" title="View documentation for numpy.load"><span class="n">np</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="n">con_fname</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">con</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">con</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">degrees</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">connectivity</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># test known connections</span>
+<span class="c1"># con = np.zeros((68, 68))</span>
+<span class="c1"># con[55, 47] = 0.9  # rostralmiddlefrontal-rh - posteriorcingulate-rh</span>
+<span class="c1"># con[46, 22] = 0.6  # lateraloccipital-lh - posteriorcingulate-lh</span>
+<span class="c1"># con = con + con.T</span>
+<span class="c1"># degrees = mne.connectivity.degree(con, threshold=0.2)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <a href="../../generated/jumeg.connectivity.plot_lines_and_blobs.html#jumeg.connectivity.plot_lines_and_blobs" title="View documentation for jumeg.connectivity.plot_lines_and_blobs"><span class="n">plot_lines_and_blobs</span></a><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">yaml_fname</span><span class="p">,</span> <span class="n">orig_labels_fname</span><span class="p">,</span>
+                               <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">node_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># n_nodes = len(degrees)</span>
+<span class="c1"># node_order_size = 68</span>
+<span class="c1"># fig = None</span>
+<span class="c1"># subplot = 111</span>
+<span class="c1"># radsize = 5.</span>
+<span class="c1"># degsize = 10.</span>
+<span class="c1"># alpha = 0.5</span>
+<span class="c1"># n_lines = 50</span>
+<span class="c1"># vmin, vmax = None, None</span>
+<span class="c1"># node_width = None</span>
+<span class="c1"># arrow = False</span>
+<span class="c1"># colormap = &#39;Blues&#39;</span>
+<span class="c1"># linewidth = 1.5</span>
+
+
+<span class="c1"># def plot_lines_and_blobs(con, degrees, yaml_fname, orig_labels_fname,</span>
+<span class="c1">#                          node_order_size=68, fig=None, subplot=111,</span>
+<span class="c1">#                          color=&#39;b&#39;, cmap=&#39;Blues&#39;, tight_layout=False,</span>
+<span class="c1">#                          alpha=0.5, fontsize_groups=6, textcolor_groups=&#39;k&#39;,</span>
+<span class="c1">#                          radsize=1., degsize=1, show_group_labels=True,</span>
+<span class="c1">#                          linewidth=1.5, n_lines=50, node_width=None,</span>
+<span class="c1">#                          arrow=False, out_fname=&#39;lines_and_blobs.png&#39;,</span>
+<span class="c1">#                          vmin=None, vmax=None, figsize=None, node_labels=False,</span>
+<span class="c1">#                          show=True):</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#     Plot connectivity circle plot with a centrality index per node shown as</span>
+<span class="c1">#     blobs along the circulference of the circle, hence the lines and the blobs.</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#     import yaml</span>
+<span class="c1">#     with open(orig_labels_fname, &#39;r&#39;) as f:</span>
+<span class="c1">#         orig_labels = yaml.safe_load(f)[&#39;label_names&#39;]</span>
+<span class="c1">#</span>
+<span class="c1">#     n_nodes = len(degrees)</span>
+<span class="c1">#</span>
+<span class="c1">#     assert n_nodes == len(orig_labels), &#39;Mismatch in node names and number.&#39;</span>
+<span class="c1">#     assert n_nodes == len(con), &#39;Mismatch in n_nodes for con and degrees.&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#     # read the yaml file with grouping of the various nodes</span>
+<span class="c1">#     if op.isfile(yaml_fname):</span>
+<span class="c1">#         with open(yaml_fname, &#39;r&#39;) as f:</span>
+<span class="c1">#             labels = yaml.safe_load(f)</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         print(&#39;%s - File not found.&#39; % yaml_fname)</span>
+<span class="c1">#         sys.exit()</span>
+<span class="c1">#</span>
+<span class="c1">#     # make list of label_names (without individual cortex locations)</span>
+<span class="c1">#     label_names = [list(lab.values())[0] for lab in labels]</span>
+<span class="c1">#     label_names = [la for l in label_names for la in l]</span>
+<span class="c1">#</span>
+<span class="c1">#     lh_labels = [name + &#39;-lh&#39; for name in label_names]</span>
+<span class="c1">#     rh_labels = [name + &#39;-rh&#39; for name in label_names]</span>
+<span class="c1">#</span>
+<span class="c1">#     # save the plot order</span>
+<span class="c1">#     node_order = list()</span>
+<span class="c1">#     node_order.extend(lh_labels[::-1])  # reverse the order</span>
+<span class="c1">#     node_order.extend(rh_labels)</span>
+<span class="c1">#     assert len(node_order) == node_order_size, &#39;Node order length is correct.&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#     # the respective no. of regions in each cortex</span>
+<span class="c1">#     # yaml fix order change</span>
+<span class="c1">#     group_bound = [len(list(key.values())[0]) for key in labels]</span>
+<span class="c1">#     group_bound = [0] + group_bound[::-1] + group_bound</span>
+<span class="c1">#     group_boundaries = [sum(group_bound[:i+1]) for i in range(len(group_bound))]</span>
+<span class="c1">#</span>
+<span class="c1">#     # remove the first element of group_bound</span>
+<span class="c1">#     # make label colours such that each cortex is of one colour</span>
+<span class="c1">#     group_bound.pop(0)</span>
+<span class="c1">#</span>
+<span class="c1">#     # remove the last total sum of the list</span>
+<span class="c1">#     group_boundaries.pop()</span>
+<span class="c1">#</span>
+<span class="c1">#     from mne.viz.circle import circular_layout</span>
+<span class="c1">#     node_angles = circular_layout(orig_labels, node_order, start_pos=90,</span>
+<span class="c1">#                                   group_boundaries=group_boundaries)</span>
+<span class="c1">#</span>
+<span class="c1">#     if node_width is None:</span>
+<span class="c1">#         # widths correspond to the minimum angle between two nodes</span>
+<span class="c1">#         dist_mat = node_angles[None, :] - node_angles[:, None]</span>
+<span class="c1">#         dist_mat[np.diag_indices(n_nodes)] = 1e9</span>
+<span class="c1">#         node_width = np.min(np.abs(dist_mat))</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         node_width = node_width * np.pi / 180</span>
+<span class="c1">#</span>
+<span class="c1">#     # prepare group label positions</span>
+<span class="c1">#     group_labels = [list(lab.keys())[0] for lab in labels]</span>
+<span class="c1">#     grp_lh_labels = [name + &#39;-lh&#39; for name in group_labels]</span>
+<span class="c1">#     grp_rh_labels = [name + &#39;-rh&#39; for name in group_labels]</span>
+<span class="c1">#     all_group_labels = grp_lh_labels + grp_rh_labels</span>
+<span class="c1">#</span>
+<span class="c1">#     # save the group order</span>
+<span class="c1">#     group_node_order = list()</span>
+<span class="c1">#     group_node_order.extend(grp_lh_labels[::-1])</span>
+<span class="c1">#     group_node_order.extend(grp_rh_labels)</span>
+<span class="c1">#     n_groups = len(group_node_order)</span>
+<span class="c1">#</span>
+<span class="c1">#     group_node_angles = circular_layout(group_node_order, group_node_order,</span>
+<span class="c1">#                                         start_pos=90.)</span>
+<span class="c1">#</span>
+<span class="c1">#     import matplotlib.pyplot as plt</span>
+<span class="c1">#     import matplotlib.path as m_path</span>
+<span class="c1">#     import matplotlib.patches as m_patches</span>
+
+<span class="c1">#     if fig is None:</span>
+<span class="c1">#         fig = plt.figure(figsize=figsize)</span>
+<span class="c1">#</span>
+<span class="c1">#     # use a polar axes</span>
+<span class="c1">#     if not isinstance(subplot, tuple):</span>
+<span class="c1">#         subplot = (subplot,)</span>
+<span class="c1">#</span>
+<span class="c1">#     ax = plt.subplot(*subplot, polar=True, facecolor=&#39;white&#39;)</span>
+<span class="c1">#</span>
+<span class="c1">#     cortex_colors = [&#39;m&#39;, &#39;b&#39;, &#39;y&#39;, &#39;c&#39;, &#39;r&#39;, &#39;g&#39;,</span>
+<span class="c1">#                      &#39;g&#39;, &#39;r&#39;, &#39;c&#39;, &#39;y&#39;, &#39;b&#39;, &#39;m&#39;]</span>
+<span class="c1">#</span>
+<span class="c1">#     label_colors = []</span>
+<span class="c1">#     for ind, rep in enumerate(group_bound):</span>
+<span class="c1">#         label_colors += [cortex_colors[ind]] * rep</span>
+<span class="c1">#     assert len(label_colors) == len(node_order), &#39;Number of colours do not match&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#     # the order of the node_colors must match that of orig_labels</span>
+<span class="c1">#     # therefore below reordering is necessary</span>
+<span class="c1">#     reordered_colors = [label_colors[node_order.index(orig)]</span>
+<span class="c1">#                         for orig in orig_labels]</span>
+<span class="c1">#</span>
+<span class="c1">#     # first plot the circle showing the degree</span>
+<span class="c1">#     theta = np.deg2rad(node_angles)</span>
+<span class="c1">#     radii = np.ones(len(node_angles)) * radsize</span>
+<span class="c1">#     c = ax.scatter(theta, radii, c=reordered_colors, s=degrees * degsize,</span>
+<span class="c1">#                    cmap=cmap, alpha=alpha)</span>
+<span class="c1">#</span>
+<span class="c1">#     ax.grid(False)</span>
+<span class="c1">#     ax.set_xticks([])</span>
+<span class="c1">#     ax.set_yticks([])</span>
+<span class="c1">#     ax.spines[&#39;polar&#39;].set_visible(False)</span>
+<span class="c1">#</span>
+<span class="c1">#     # handle 1D and 2D connectivity information</span>
+<span class="c1">#     if con.ndim == 1:</span>
+<span class="c1">#         if indices is None:</span>
+<span class="c1">#             raise ValueError(&#39;indices has to be provided if con.ndim == 1&#39;)</span>
+<span class="c1">#     elif con.ndim == 2:</span>
+<span class="c1">#         if con.shape[0] != n_nodes or con.shape[1] != n_nodes:</span>
+<span class="c1">#             raise ValueError(&#39;con has to be 1D or a square matrix&#39;)</span>
+<span class="c1">#         # we use the lower-triangular part</span>
+<span class="c1">#         indices = np.tril_indices(n_nodes, -1)</span>
+<span class="c1">#         con = con[indices]</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         raise ValueError(&#39;con has to be 1D or a square matrix&#39;)</span>
+<span class="c1">#</span>
+<span class="c1">#     # Draw lines between connected nodes, only draw the strongest connections</span>
+<span class="c1">#     if n_lines is not None and len(con) &gt; n_lines:</span>
+<span class="c1">#         con_thresh = np.sort(np.abs(con).ravel())[-n_lines]</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         con_thresh = 0.</span>
+<span class="c1">#</span>
+<span class="c1">#     # get the connections which we are drawing and sort by connection strength</span>
+<span class="c1">#     # this will allow us to draw the strongest connections first</span>
+<span class="c1">#     con_abs = np.abs(con)</span>
+<span class="c1">#     con_draw_idx = np.where(con_abs &gt;= con_thresh)[0]</span>
+<span class="c1">#</span>
+<span class="c1">#     con = con[con_draw_idx]</span>
+<span class="c1">#     con_abs = con_abs[con_draw_idx]</span>
+<span class="c1">#     indices = [ind[con_draw_idx] for ind in indices]</span>
+<span class="c1">#</span>
+<span class="c1">#     # now sort them</span>
+<span class="c1">#     sort_idx = np.argsort(con_abs)</span>
+<span class="c1">#     con_abs = con_abs[sort_idx]</span>
+<span class="c1">#     con = con[sort_idx]</span>
+<span class="c1">#     indices = [ind[sort_idx] for ind in indices]</span>
+<span class="c1">#</span>
+<span class="c1">#     # get the colormap</span>
+<span class="c1">#     if isinstance(cmap, str):</span>
+<span class="c1">#         colormap = plt.get_cmap(cmap)</span>
+<span class="c1">#</span>
+<span class="c1">#     # Get vmin vmax for color scaling</span>
+<span class="c1">#     if vmin is None:</span>
+<span class="c1">#         vmin = np.min(con[np.abs(con) &gt;= con_thresh])</span>
+<span class="c1">#     if vmax is None:</span>
+<span class="c1">#         vmax = np.max(con)</span>
+<span class="c1">#     vrange = vmax - vmin</span>
+<span class="c1">#</span>
+<span class="c1">#     # We want to add some &quot;noise&quot; to the start and end position of the</span>
+<span class="c1">#     # edges: We modulate the noise with the number of connections of the</span>
+<span class="c1">#     # node and the connection strength, such that the strongest connections</span>
+<span class="c1">#     # are closer to the node center</span>
+<span class="c1">#     nodes_n_con = np.zeros((n_nodes), dtype=np.int)</span>
+<span class="c1">#     for i, j in zip(indices[0], indices[1]):</span>
+<span class="c1">#         nodes_n_con[i] += 1</span>
+<span class="c1">#         nodes_n_con[j] += 1</span>
+<span class="c1">#</span>
+<span class="c1">#     # initialize random number generator so plot is reproducible</span>
+<span class="c1">#     rng = np.random.mtrand.RandomState(seed=0)</span>
+<span class="c1">#</span>
+<span class="c1">#     n_con = len(indices[0])</span>
+<span class="c1">#     noise_max = 0.25 * node_width</span>
+<span class="c1">#     start_noise = rng.uniform(-noise_max, noise_max, n_con)</span>
+<span class="c1">#     end_noise = rng.uniform(-noise_max, noise_max, n_con)</span>
+<span class="c1">#</span>
+<span class="c1">#     nodes_n_con_seen = np.zeros_like(nodes_n_con)</span>
+<span class="c1">#     for i, (start, end) in enumerate(zip(indices[0], indices[1])):</span>
+<span class="c1">#         nodes_n_con_seen[start] += 1</span>
+<span class="c1">#         nodes_n_con_seen[end] += 1</span>
+<span class="c1">#</span>
+<span class="c1">#         start_noise[i] *= ((nodes_n_con[start] - nodes_n_con_seen[start]) /</span>
+<span class="c1">#                            float(nodes_n_con[start]))</span>
+<span class="c1">#         end_noise[i] *= ((nodes_n_con[end] - nodes_n_con_seen[end]) /</span>
+<span class="c1">#                          float(nodes_n_con[end]))</span>
+<span class="c1">#</span>
+<span class="c1">#     # scale connectivity for colormap (vmin&lt;=&gt;0, vmax&lt;=&gt;1)</span>
+<span class="c1">#     con_val_scaled = (con - vmin) / vrange</span>
+<span class="c1">#</span>
+<span class="c1">#     # convert to radians for below code</span>
+<span class="c1">#     node_angles = node_angles * np.pi / 180</span>
+<span class="c1">#     # Finally, we draw the connections</span>
+<span class="c1">#     for pos, (i, j) in enumerate(zip(indices[0], indices[1])):</span>
+<span class="c1">#         # Start point</span>
+<span class="c1">#         t0, r0 = node_angles[i], radsize</span>
+<span class="c1">#</span>
+<span class="c1">#         # End point</span>
+<span class="c1">#         if arrow:</span>
+<span class="c1">#             # make shorter to accomodate arrowhead</span>
+<span class="c1">#             t1, r1 = node_angles[j], radsize - 1.</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             t1, r1 = node_angles[j], radsize</span>
+<span class="c1">#</span>
+<span class="c1">#         # Some noise in start and end point</span>
+<span class="c1">#         t0 += start_noise[pos]</span>
+<span class="c1">#         t1 += end_noise[pos]</span>
+<span class="c1">#</span>
+<span class="c1">#         verts = [(t0, r0), (t0, radsize/2.), (t1, radsize/2.), (t1, r1)]</span>
+<span class="c1">#         codes = [m_path.Path.MOVETO, m_path.Path.CURVE4, m_path.Path.CURVE4,</span>
+<span class="c1">#                  m_path.Path.LINETO]</span>
+<span class="c1">#         path = m_path.Path(verts, codes)</span>
+<span class="c1">#</span>
+<span class="c1">#         color = colormap(con_val_scaled[pos])</span>
+<span class="c1">#</span>
+<span class="c1">#         if arrow:</span>
+<span class="c1">#             # add an arrow to the patch</span>
+<span class="c1">#             patch = m_patches.FancyArrowPatch(path=path,</span>
+<span class="c1">#                                               arrowstyle=arrowstyle,</span>
+<span class="c1">#                                               fill=False, edgecolor=color,</span>
+<span class="c1">#                                               mutation_scale=10,</span>
+<span class="c1">#                                               linewidth=linewidth, alpha=1.)</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             patch = m_patches.PathPatch(path, fill=False, edgecolor=color,</span>
+<span class="c1">#                                         linewidth=linewidth, alpha=1.)</span>
+<span class="c1">#</span>
+<span class="c1">#         ax.add_patch(patch)</span>
+<span class="c1">#</span>
+<span class="c1">#     # draw node labels</span>
+<span class="c1">#     if node_labels:</span>
+<span class="c1">#         angles_deg = 180 * node_angles / np.pi</span>
+<span class="c1">#         for name, angle_rad, angle_deg in zip(orig_labels, node_angles,</span>
+<span class="c1">#                                               angles_deg):</span>
+<span class="c1">#             if angle_deg &gt;= 270:</span>
+<span class="c1">#                 ha = &#39;left&#39;</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 # Flip the label, so text is always upright</span>
+<span class="c1">#                 angle_deg += 180</span>
+<span class="c1">#                 ha = &#39;right&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#             ax.text(angle_rad, radsize + 0.2, name, size=8,</span>
+<span class="c1">#                     rotation=angle_deg, rotation_mode=&#39;anchor&#39;,</span>
+<span class="c1">#                     horizontalalignment=ha, verticalalignment=&#39;center&#39;,</span>
+<span class="c1">#                     color=&#39;k&#39;)</span>
+<span class="c1">#</span>
+<span class="c1">#     if show:</span>
+<span class="c1">#         plt.show()</span>
+<span class="c1">#</span>
+<span class="c1">#     if tight_layout:</span>
+<span class="c1">#         fig.tight_layout()</span>
+<span class="c1">#</span>
+<span class="c1">#     if out_fname:</span>
+<span class="c1">#         fig.savefig(out_fname, dpi=300.)</span>
+<span class="c1">#</span>
+<span class="c1">#     return fig, ax</span>
+<span class="c1">#</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-connectivity-test-degree-circle-plotting-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/8fbc800e7b89732007b96f434a576b32/test_degree_circle_plotting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">test_degree_circle_plotting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/324fc1a17772421d3675d0815ef495e0/test_degree_circle_plotting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">test_degree_circle_plotting.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, JUMEG developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

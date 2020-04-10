@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>JUMEG Examples &#8212; jumeg 0.18 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          jumeg</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.18</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="#">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+                <li><a href="https://github.com/jdammers/jumeg">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">JUMEG Examples</a></li>
+<li><a class="reference internal" href="#causality">Causality</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#connectivity">Connectivity</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#ica-decomposition">ICA Decomposition</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#mft">MFT</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#preprocessing">Preprocessing</a><ul>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="jumeg-examples">
+<span id="sphx-glr-auto-examples"></span><h1>JUMEG Examples<a class="headerlink" href="#jumeg-examples" title="Permalink to this headline">¶</a></h1>
+<p>Here are various examples using various JUMEG tools.</p>
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="causality">
+<span id="sphx-glr-auto-examples-causality"></span><h1>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h1>
+<p>Causality related tools.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Example showing how to plot a causality matrix on a circle plot."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_causality_circle_thumb.png" src="../_images/sphx_glr_plot_causality_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="causality/plot_causality_circle.html#sphx-glr-auto-examples-causality-plot-causality-circle-py"><span class="std std-ref">Example showing how to plot a causality matrix on a circle plot.</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Uses the data and example from mne-python combined with the Scot package to perform the Granger..."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_do_granger_causality_thumb.png" src="../_images/sphx_glr_do_granger_causality_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="causality/do_granger_causality.html#sphx-glr-auto-examples-causality-do-granger-causality-py"><span class="std std-ref">Perform Granger based causality analysis using Generalized Parital Directed Coherence.</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="connectivity">
+<span id="sphx-glr-auto-examples-connectivity"></span><h1>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h1>
+<p>Various functional connectivity related tools.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot degree values for a given set of nodes in a simple circle plot."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_degree_circle_thumb.png" src="../_images/sphx_glr_plot_degree_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_degree_circle.html#sphx-glr-auto-examples-connectivity-plot-degree-circle-py"><span class="std std-ref">Plot degree values for a given set of nodes in a simple circle plot.</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="mainly using functions from within mne.label.grow_labels"><div class="figure align-default" id="id4">
+<img alt="../_images/sphx_glr_plot_vertices_around_seed_thumb.png" src="../_images/sphx_glr_plot_vertices_around_seed_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_vertices_around_seed.html#sphx-glr-auto-examples-connectivity-plot-vertices-around-seed-py"><span class="std std-ref">Find distances between vertices and plot vertices in a small region.</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example exposing the plot_labelled_group_connectivity_circle function."><div class="figure align-default" id="id5">
+<img alt="../_images/sphx_glr_plot_labelled_connectivity_circle_thumb.png" src="../_images/sphx_glr_plot_labelled_connectivity_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_labelled_connectivity_circle.html#sphx-glr-auto-examples-connectivity-plot-labelled-connectivity-circle-py"><span class="std std-ref">Example exposing the plot_labelled_group_connectivity_circle function.</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute interhemispherical laterality between brain hemispheres."><div class="figure align-default" id="id6">
+<img alt="../_images/sphx_glr_plot_compute_interhemispherical_laterality_thumb.png" src="../_images/sphx_glr_plot_compute_interhemispherical_laterality_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_compute_interhemispherical_laterality.html#sphx-glr-auto-examples-connectivity-plot-compute-interhemispherical-laterality-py"><span class="std std-ref">Compute interhemispherical laterality between brain hemispheres.</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot grouped connectivity circle with these grouped labels for the Destriux atlas."><div class="figure align-default" id="id7">
+<img alt="../_images/sphx_glr_plot_destriux_atlas_based_connectivity_thumb.png" src="../_images/sphx_glr_plot_destriux_atlas_based_connectivity_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_destriux_atlas_based_connectivity.html#sphx-glr-auto-examples-connectivity-plot-destriux-atlas-based-connectivity-py"><span class="std std-ref">Read grouped aparc labels from yaml file.</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script showing various methods used to generate surrogate from a time series."><div class="figure align-default" id="id8">
+<img alt="../_images/sphx_glr_plot_surrogate_methods_thumb.png" src="../_images/sphx_glr_plot_surrogate_methods_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_surrogate_methods.html#sphx-glr-auto-examples-connectivity-plot-surrogate-methods-py"><span class="std std-ref">Script showing various methods used to generate surrogate from a time series.</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Nilearn (https://nilearn.github.io/)"><div class="figure align-default" id="id9">
+<img alt="../_images/sphx_glr_plot_brain_connectome_thumb.png" src="../_images/sphx_glr_plot_brain_connectome_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_brain_connectome.html#sphx-glr-auto-examples-connectivity-plot-brain-connectome-py"><span class="std std-ref">Plot connectivity on a glass brain using ‘plot_connectome’ function from nilearn</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Read grouped aparc labels from yaml file and plot grouped connectivity circle"><div class="figure align-default" id="id10">
+<img alt="../_images/sphx_glr_plot_grouped_connectivity_circle_thumb.png" src="../_images/sphx_glr_plot_grouped_connectivity_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_grouped_connectivity_circle.html#sphx-glr-auto-examples-connectivity-plot-grouped-connectivity-circle-py"><span class="std std-ref">Read grouped aparc labels from yaml file and plot grouped connectivity circle</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script to show functionality to plot centrality indices along with connectivity circle plot."><div class="figure align-default" id="id11">
+<img alt="../_images/sphx_glr_plot_circle_lines_and_blobs_thumb.png" src="../_images/sphx_glr_plot_circle_lines_and_blobs_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_circle_lines_and_blobs.html#sphx-glr-auto-examples-connectivity-plot-circle-lines-and-blobs-py"><span class="std std-ref">Script to show functionality to plot centrality indices along with connectivity circle plot.</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script exposing circle plots with outer ring."><div class="figure align-default" id="id12">
+<img alt="../_images/sphx_glr_plot_generic_grouped_connectivity_circle_thumb.png" src="../_images/sphx_glr_plot_generic_grouped_connectivity_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_generic_grouped_connectivity_circle.html#sphx-glr-auto-examples-connectivity-plot-generic-grouped-connectivity-circle-py"><span class="std std-ref">Script exposing circle plots with outer ring.</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="1. Read ROIs of standard regions involved in resting state networks from literature.    (the da..."><div class="figure align-default" id="id13">
+<img alt="../_images/sphx_glr_plot_annot_standard_rsns_thumb.png" src="../_images/sphx_glr_plot_annot_standard_rsns_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_annot_standard_rsns.html#sphx-glr-auto-examples-connectivity-plot-annot-standard-rsns-py"><span class="std std-ref">Grow and visualize standard resting state ROIs from literature.</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script to show functionality to plot centrality indices along with"><div class="figure align-default" id="id14">
+<img alt="../_images/sphx_glr_test_plot_circle_lines_and_blobs_thumb.png" src="../_images/sphx_glr_test_plot_circle_lines_and_blobs_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_connectivity_test_plot_circle_lines_and_blobs.py</span></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script show how to compute and visualize distance between label center of masses."><div class="figure align-default" id="id15">
+<img alt="../_images/sphx_glr_plot_compute_label_distances_thumb.png" src="../_images/sphx_glr_plot_compute_label_distances_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_compute_label_distances.html#sphx-glr-auto-examples-connectivity-plot-compute-label-distances-py"><span class="std std-ref">Script show how to compute and visualize distance between label center of masses.</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example to show surrogate generation on Epochs using the jumeg Surrogates module."><div class="figure align-default" id="id16">
+<img alt="../_images/sphx_glr_plot_compute_epochs_surrogates_thumb.png" src="../_images/sphx_glr_plot_compute_epochs_surrogates_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_compute_epochs_surrogates.html#sphx-glr-auto-examples-connectivity-plot-compute-epochs-surrogates-py"><span class="std std-ref">Example to show surrogate generation on Epochs using the jumeg Surrogates module.</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="To plot a vertex point, convert it to MNI coordinates and then reconvert it back to RAS to obta..."><div class="figure align-default" id="id17">
+<img alt="../_images/sphx_glr_plot_test_transform_mni_to_ras_thumb.png" src="../_images/sphx_glr_plot_test_transform_mni_to_ras_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_test_transform_mni_to_ras.html#sphx-glr-auto-examples-connectivity-plot-test-transform-mni-to-ras-py"><span class="std std-ref">Transform MNI coordinates and then reconvert it back to RAS.</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example to show surrogate generation on STCs using the jumeg Surrogates module."><div class="figure align-default" id="id18">
+<img alt="../_images/sphx_glr_plot_generate_surrogate_stcs_thumb.png" src="../_images/sphx_glr_plot_generate_surrogate_stcs_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_generate_surrogate_stcs.html#sphx-glr-auto-examples-connectivity-plot-generate-surrogate-stcs-py"><span class="std std-ref">Example to show surrogate generation on STCs using the jumeg Surrogates module.</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Shuffle channels&#x27; data in the time domain and plot."><div class="figure align-default" id="id19">
+<img alt="../_images/sphx_glr_plot_shuffle_time_slices_thumb.png" src="../_images/sphx_glr_plot_shuffle_time_slices_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_shuffle_time_slices.html#sphx-glr-auto-examples-connectivity-plot-shuffle-time-slices-py"><span class="std std-ref">Shuffle channels’ data in the time domain and plot.</span></a></span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot degree values for a given set of nodes in a simple circle plot."><div class="figure align-default" id="id20">
+<img alt="../_images/sphx_glr_test_plot_degree_circle_thumb.png" src="../_images/sphx_glr_test_plot_degree_circle_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_connectivity_test_plot_degree_circle.py</span></span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script to plot label distances on circle and connectome plots."><div class="figure align-default" id="id21">
+<img alt="../_images/sphx_glr_plot_label_distances_thumb.png" src="../_images/sphx_glr_plot_label_distances_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_label_distances.html#sphx-glr-auto-examples-connectivity-plot-label-distances-py"><span class="std std-ref">Script to plot label distances on circle and connectome plots.</span></a></span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot Networkx Communities on a connectome plot."><div class="figure align-default" id="id22">
+<img alt="../_images/sphx_glr_plot_communities_thumb.png" src="../_images/sphx_glr_plot_communities_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_communities.html#sphx-glr-auto-examples-connectivity-plot-communities-py"><span class="std std-ref">Plot Networkx Communities on a connectome plot.</span></a></span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot the visualization of the standard resting state network on the connectivity circle plot sh..."><div class="figure align-default" id="id23">
+<img alt="../_images/sphx_glr_plot_standard_resting_network_on_aparc_annot_map_thumb.png" src="../_images/sphx_glr_plot_standard_resting_network_on_aparc_annot_map_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_standard_resting_network_on_aparc_annot_map.html#sphx-glr-auto-examples-connectivity-plot-standard-resting-network-on-aparc-annot-map-py"><span class="std std-ref">Visualize the standard resting state network on the connectivity circle.</span></a></span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Script showing surrogate computation."><div class="figure align-default" id="id24">
+<img alt="../_images/sphx_glr_plot_generate_surrogate_connectivity_thumb.png" src="../_images/sphx_glr_plot_generate_surrogate_connectivity_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_generate_surrogate_connectivity.html#sphx-glr-auto-examples-connectivity-plot-generate-surrogate-connectivity-py"><span class="std std-ref">Script showing surrogate computation.</span></a></span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Modified MNE-Python example script."><div class="figure align-default" id="id25">
+<img alt="../_images/sphx_glr_plot_connectivity_between_standard_rsns_thumb.png" src="../_images/sphx_glr_plot_connectivity_between_standard_rsns_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_connectivity_between_standard_rsns.html#sphx-glr-auto-examples-connectivity-plot-connectivity-between-standard-rsns-py"><span class="std std-ref">Show connectivity between standard resting state network labels.</span></a></span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Simple implementations of connectivity measures."><div class="figure align-default" id="id26">
+<img alt="../_images/sphx_glr_plot_simulated_connectivity_thumb.png" src="../_images/sphx_glr_plot_simulated_connectivity_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="connectivity/plot_simulated_connectivity.html#sphx-glr-auto-examples-connectivity-plot-simulated-connectivity-py"><span class="std std-ref">Simple implementations of connectivity measures.</span></a></span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Test script for trying plotting routines involving degree + Connectivity"><div class="figure align-default" id="id27">
+<img alt="../_images/sphx_glr_test_degree_circle_plotting_thumb.png" src="../_images/sphx_glr_test_degree_circle_plotting_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_connectivity_test_degree_circle_plotting.py</span></span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="ica-decomposition">
+<span id="sphx-glr-auto-examples-decompose"></span><h1>ICA Decomposition<a class="headerlink" href="#ica-decomposition" title="Permalink to this headline">¶</a></h1>
+<p>Examples showing various ICA based decomposition methods and related functionality.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute infomax ICA on raw data."><div class="figure align-default" id="id28">
+<img alt="../_images/sphx_glr_test_plot_powerspectrum_thumb.png" src="../_images/sphx_glr_test_plot_powerspectrum_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_decompose_test_plot_powerspectrum.py</span></span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute infomax ICA on raw data."><div class="figure align-default" id="id29">
+<img alt="../_images/sphx_glr_test_verbose_infomax_thumb.png" src="../_images/sphx_glr_test_verbose_infomax_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_decompose_test_verbose_infomax.py</span></span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example script to estimate the rank of the given data array."><div class="figure align-default" id="id30">
+<img alt="../_images/sphx_glr_test_plot_rank_estimation_thumb.png" src="../_images/sphx_glr_test_plot_rank_estimation_thumb.png" />
+<p class="caption"><span class="caption-text"><span class="xref std std-ref">sphx_glr_auto_examples_decompose_test_plot_rank_estimation.py</span></span><a class="headerlink" href="#id30" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot a given data distribution compared with a standard Gaussian distribution."><div class="figure align-default" id="id31">
+<img alt="../_images/sphx_glr_plot_data_distribution_thumb.png" src="../_images/sphx_glr_plot_data_distribution_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="decompose/plot_data_distribution.html#sphx-glr-auto-examples-decompose-plot-data-distribution-py"><span class="std std-ref">Plot a given data distribution compared with a standard Gaussian distribution.</span></a></span><a class="headerlink" href="#id31" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Compare pca_mean_ and pre_whitener_ for: mne &amp; filtered data, jumeg &amp; filtered data, jumeg &amp; un..."><div class="figure align-default" id="id32">
+<img alt="../_images/sphx_glr_do_compare_ica_methods_thumb.png" src="../_images/sphx_glr_do_compare_ica_methods_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="decompose/do_compare_ica_methods.html#sphx-glr-auto-examples-decompose-do-compare-ica-methods-py"><span class="std std-ref">Compute the ica object on filtered data based on the mne and on the jumeg method.</span></a></span><a class="headerlink" href="#id32" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Estimate the rank of the given data array."><div class="figure align-default" id="id33">
+<img alt="../_images/sphx_glr_plot_rank_estimation_thumb.png" src="../_images/sphx_glr_plot_rank_estimation_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="decompose/plot_rank_estimation.html#sphx-glr-auto-examples-decompose-plot-rank-estimation-py"><span class="std std-ref">Estimate the rank of the given data array.</span></a></span><a class="headerlink" href="#id33" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute ICA object based on filtered and downsampled data."><div class="figure align-default" id="id34">
+<img alt="../_images/sphx_glr_do_MLICA_thumb.png" src="../_images/sphx_glr_do_MLICA_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="decompose/do_MLICA.html#sphx-glr-auto-examples-decompose-do-mlica-py"><span class="std std-ref">MLICA</span></a></span><a class="headerlink" href="#id34" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="mft">
+<span id="sphx-glr-auto-examples-mft"></span><h1>MFT<a class="headerlink" href="#mft" title="Permalink to this headline">¶</a></h1>
+<p>Examples showing the python implementation of MFT.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a surface based forward solution."><div class="figure align-default" id="id35">
+<img alt="../_images/sphx_glr_plot_perform_mft_surface_thumb.png" src="../_images/sphx_glr_plot_perform_mft_surface_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="mft/plot_perform_mft_surface.html#sphx-glr-auto-examples-mft-plot-perform-mft-surface-py"><span class="std std-ref">Perform MFT on a surface based forward solution.</span></a></span><a class="headerlink" href="#id35" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a surface based forward solution."><div class="figure align-default" id="id36">
+<img alt="../_images/sphx_glr_plot_perform_mft_surface_list_thumb.png" src="../_images/sphx_glr_plot_perform_mft_surface_list_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="mft/plot_perform_mft_surface_list.html#sphx-glr-auto-examples-mft-plot-perform-mft-surface-list-py"><span class="std std-ref">Perform MFT on a surface based forward solution.</span></a></span><a class="headerlink" href="#id36" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Perform MFT on a volume based forward solution."><div class="figure align-default" id="id37">
+<img alt="../_images/sphx_glr_plot_perform_mft_volume_thumb.png" src="../_images/sphx_glr_plot_perform_mft_volume_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="mft/plot_perform_mft_volume.html#sphx-glr-auto-examples-mft-plot-perform-mft-volume-py"><span class="std std-ref">Perform MFT on a volume based forward solution.</span></a></span><a class="headerlink" href="#id37" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="preprocessing">
+<span id="sphx-glr-auto-examples-preprocessing"></span><h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h1>
+<p>Preprocessing tools for filtering, bad channel detection etc.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Example code to use the jumeg suggest bads functionality."><div class="figure align-default" id="id38">
+<img alt="../_images/sphx_glr_plot_suggest_bads_thumb.png" src="../_images/sphx_glr_plot_suggest_bads_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="preprocessing/plot_suggest_bads.html#sphx-glr-auto-examples-preprocessing-plot-suggest-bads-py"><span class="std std-ref">Identify bad channels</span></a></span><a class="headerlink" href="#id38" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Use suggest_bads to automatically identify bad MEG channels and use interpolate_bads based on t..."><div class="figure align-default" id="id39">
+<img alt="../_images/sphx_glr_plot_interpolate_bads_thumb.png" src="../_images/sphx_glr_plot_interpolate_bads_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="preprocessing/plot_interpolate_bads.html#sphx-glr-auto-examples-preprocessing-plot-interpolate-bads-py"><span class="std std-ref">Interpolate bad channels</span></a></span><a class="headerlink" href="#id39" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Comparison of the various filters available for use in mne/jumeg."><div class="figure align-default" id="id40">
+<img alt="../_images/sphx_glr_plot_compare_jumeg_filters_thumb.png" src="../_images/sphx_glr_plot_compare_jumeg_filters_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="preprocessing/plot_compare_jumeg_filters.html#sphx-glr-auto-examples-preprocessing-plot-compare-jumeg-filters-py"><span class="std std-ref">Filtering in jumeg</span></a></span><a class="headerlink" href="#id40" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div><div class="sphx-glr-footer class sphx-glr-footer-gallery docutils container">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/5c203e3d20600859e3755f9167c2b834/auto_examples_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">auto_examples_python.zip</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9b92a876889db15ca7a30390a7e48230/auto_examples_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">auto_examples_jupyter.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, JUMEG developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+jumeg.connectivity.causality.dw\_whiteness
+==========================================
+
+.. currentmodule:: jumeg.connectivity.causality
+
+.. autofunction:: dw_whiteness
