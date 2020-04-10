@@ -73,7 +73,7 @@ Read grouped aparc labels from yaml file and plot grouped connectivity circle
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.521 seconds)
+   **Total running time of the script:** ( 0 minutes  1.528 seconds)
 
 
 .. _sphx_glr_download_auto_examples_connectivity_plot_grouped_connectivity_circle.py:

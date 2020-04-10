@@ -642,19 +642,19 @@ Script showing surrogate computation.
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 5..8
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 9..12
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 13..16
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 17..20
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
@@ -738,8 +738,8 @@ Script showing surrogate computation.
         computing connectivity for epochs 1..4
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 5..8
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
@@ -772,14 +772,14 @@ Script showing surrogate computation.
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 29..32
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 33..36
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 37..40
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
@@ -893,8 +893,8 @@ Script showing surrogate computation.
         computing connectivity for epochs 45..48
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.1s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.0s finished
         computing connectivity for epochs 49..52
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.0s remaining:    0.0s
@@ -1449,7 +1449,7 @@ Script showing surrogate computation.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.893 seconds)
+   **Total running time of the script:** ( 0 minutes  6.477 seconds)
 
 
 .. _sphx_glr_download_auto_examples_connectivity_plot_generate_surrogate_connectivity.py:
