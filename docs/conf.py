@@ -132,7 +132,7 @@ html_theme_options = {
         ("API", "api"),
         ("GitHub", "https://github.com/jdammers/jumeg", True)
     ],
-    'bootswatch_theme': "Simplex"
+    'bootswatch_theme': "simplex"
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

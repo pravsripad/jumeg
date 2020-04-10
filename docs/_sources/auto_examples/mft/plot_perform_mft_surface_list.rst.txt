@@ -145,7 +145,7 @@ Perform MFT on a surface based forward solution.
      67          transversetemporal-lh      lh:   770 verts   22 used
      68          transversetemporal-rh      rh:   733 verts   20 used
     --> sums: 295372 verts 7027 used
-    prep. labels took 103.903 ms (0.074 s walltime)
+    prep. labels took 75.698 ms (0.038 s walltime)
     Reading evoked data from /Users/psripad/mne_data/MNE-sample-data/MEG/sample/sample_audvis-ave.fif
     Reading /Users/psripad/mne_data/MNE-sample-data/MEG/sample/sample_audvis-ave.fif ...
         Read a total of 4 projection items:
@@ -160,9 +160,9 @@ Perform MFT on a surface based forward solution.
     Projections have already been applied. Setting proj attribute to True.
     Applying baseline correction (mode: mean)
     ########## Calculate initial prob-dist:
-    calc(wdist0) took 1.844 ms (0.002 s walltime)
+    calc(wdist0) took 1.842 ms (0.001 s walltime)
     ########## Calculate P-matrix, incl. weights:
-    calc(lf*w*lf.T) took  143.5269999999491 ms (0.133 s walltime)
+    calc(lf*w*lf.T) took  217.60699999998678 ms (0.109 s walltime)
     ln(condno) = -117.197, K_H = 10^( -50.898) =    0.000
     (K_H < 0.01 : bad, K_H > 0.1 : good)
     ########## Create stc data and qual data arrays:
@@ -611,13 +611,13 @@ Perform MFT on a surface based forward solution.
     Writing STC to disk...
     [done]
     ##### done.
-    calc(lf*w*lf.T) took   total      99.74 s CPU-time (   105.70 s walltime)
-    calc(lf*w*lf.T) took per call    118.32ms CPU-time (   125.39ms walltime)
-    scan_cdm calls  took   total      52.73 s CPU-time (    56.70 s walltime)
-    scan_cdm calls  took per call    125.25ms CPU-time (   134.67ms walltime)
-    iteration-loops took   total     106.66 s CPU-time (   113.23 s walltime)
-    iteration-loops took per call    253.35ms CPU-time (   268.95ms walltime)
-    Total mft-call  took   total     165.85 s CPU-time (   176.67 s walltime)
+    calc(lf*w*lf.T) took   total      96.13 s CPU-time (    96.79 s walltime)
+    calc(lf*w*lf.T) took per call    114.03ms CPU-time (   114.82ms walltime)
+    scan_cdm calls  took   total      45.86 s CPU-time (    46.19 s walltime)
+    scan_cdm calls  took per call    108.93ms CPU-time (   109.71ms walltime)
+    iteration-loops took   total     102.22 s CPU-time (   103.04 s walltime)
+    iteration-loops took per call    242.80ms CPU-time (   244.76ms walltime)
+    Total mft-call  took   total     153.94 s CPU-time (   154.64 s walltime)
     Reading /Users/psripad/mne_data/MNE-sample-data/MEG/sample/sample_audvis-ave.fif ...
         Read a total of 4 projection items:
             PCA-v1 (1 x 102) active
@@ -1263,7 +1263,7 @@ Perform MFT on a surface based forward solution.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 3 minutes  8.631 seconds)
+   **Total running time of the script:** ( 2 minutes  44.900 seconds)
 
 
 .. _sphx_glr_download_auto_examples_mft_plot_perform_mft_surface_list.py:

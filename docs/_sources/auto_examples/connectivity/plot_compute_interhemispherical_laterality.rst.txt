@@ -22,14 +22,14 @@ Compute interhemispherical laterality between brain hemispheres.
 
     Visual Left visual cortex : [-41 -77   3] lh Closest vertex on surface chosen: [6708]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    2.6s remaining:    2.6s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    2.7s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    2.7s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    2.9s remaining:    2.9s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    3.0s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    3.0s finished
     Right visual cortex : [ 41 -72   1] rh Closest vertex on surface chosen: [10095]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.2s remaining:    0.2s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
     Sensorimotor Left primary somatosensory cortex : [-38 -27  52] lh Closest vertex on surface chosen: [62711]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
@@ -43,18 +43,18 @@ Compute interhemispherical laterality between brain hemispheres.
     Auditory Left primary auditory cortex : [-55 -21   7] lh Closest vertex on surface chosen: [72410]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
     Right primary auditory cortex : [ 57 -20   7] rh Closest vertex on surface chosen: [76848]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.2s remaining:    0.2s
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
     DMN Precuneus : [  1 -57  28] lh Closest vertex on surface chosen: [29030]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
     Left inferior parietal : [-45 -65  30] lh Closest vertex on surface chosen: [15645]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
@@ -67,9 +67,9 @@ Compute interhemispherical laterality between brain hemispheres.
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
     Anterior cingulate : [ 2 42  7] lh Closest vertex on surface chosen: [155310]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.2s remaining:    0.2s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
     Left FP Left angular gyrus : [-40 -58  56] lh Closest vertex on surface chosen: [24630]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
@@ -83,8 +83,8 @@ Compute interhemispherical laterality between brain hemispheres.
     Right FP Right angular gyrus : [ 53 -50  43] rh Closest vertex on surface chosen: [38519]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
     Right middle frontal gyrus : [45 28 26] rh Closest vertex on surface chosen: [130082]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.2s remaining:    0.2s
@@ -98,13 +98,13 @@ Compute interhemispherical laterality between brain hemispheres.
     Right insula : [38 16  2] rh Closest vertex on surface chosen: [119046]
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
-    Median cingulate : [-2 12 40] lh Closest vertex on surface chosen: [110618]
-    [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.1s remaining:    0.1s
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s remaining:    0.0s
     [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.2s finished
+    Median cingulate : [-2 12 40] lh Closest vertex on surface chosen: [110618]
+    [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.2s remaining:    0.2s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.3s finished
     Reading labels from parcellation...
        read 34 labels from /Users/psripad/mne_data/MNE-sample-data/subjects/sample/label/lh.aparc.annot
        read 34 labels from /Users/psripad/mne_data/MNE-sample-data/subjects/sample/label/rh.aparc.annot
@@ -150,7 +150,7 @@ Compute interhemispherical laterality between brain hemispheres.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.757 seconds)
+   **Total running time of the script:** ( 0 minutes  12.981 seconds)
 
 
 .. _sphx_glr_download_auto_examples_connectivity_plot_compute_interhemispherical_laterality.py:

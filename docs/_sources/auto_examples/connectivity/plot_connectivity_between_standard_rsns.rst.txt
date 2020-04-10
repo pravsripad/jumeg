@@ -303,7 +303,7 @@ Resting-State Functional Connectivity,” Brain Connect., vol. 6, no. 6, pp.
         assembling connectivity matrix (filling the upper triangular region of the matrix)
     [Connectivity computation done]
 
-    (<Figure size 800x800 with 2 Axes>, <matplotlib.axes._subplots.PolarAxesSubplot object at 0x1a4e22db50>)
+    (<Figure size 800x800 with 2 Axes>, <matplotlib.axes._subplots.PolarAxesSubplot object at 0x1a4868b6d0>)
 
 
 
@@ -429,7 +429,7 @@ Resting-State Functional Connectivity,” Brain Connect., vol. 6, no. 6, pp.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.961 seconds)
+   **Total running time of the script:** ( 0 minutes  2.219 seconds)
 
 
 .. _sphx_glr_download_auto_examples_connectivity_plot_connectivity_between_standard_rsns.py:

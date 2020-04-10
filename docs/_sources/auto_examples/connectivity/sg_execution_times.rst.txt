@@ -5,52 +5,52 @@
 
 Computation times
 =================
-**03:32.365** total execution time for **auto_examples_connectivity** files:
+**03:05.996** total execution time for **auto_examples_connectivity** files:
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_label_distances.py` (``plot_compute_label_distances.py``)                                         | 01:06.284 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_label_distances.py` (``plot_compute_label_distances.py``)                                         | 01:03.151 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_annot_standard_rsns.py` (``plot_annot_standard_rsns.py``)                                                 | 00:26.663 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_annot_standard_rsns.py` (``plot_annot_standard_rsns.py``)                                                 | 00:18.239 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_shuffle_time_slices.py` (``plot_shuffle_time_slices.py``)                                                 | 00:20.553 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_shuffle_time_slices.py` (``plot_shuffle_time_slices.py``)                                                 | 00:16.960 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_vertices_around_seed.py` (``plot_vertices_around_seed.py``)                                               | 00:15.054 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_vertices_around_seed.py` (``plot_vertices_around_seed.py``)                                               | 00:14.030 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_standard_resting_network_on_aparc_annot_map.py` (``plot_standard_resting_network_on_aparc_annot_map.py``) | 00:15.018 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_interhemispherical_laterality.py` (``plot_compute_interhemispherical_laterality.py``)             | 00:12.981 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_interhemispherical_laterality.py` (``plot_compute_interhemispherical_laterality.py``)             | 00:12.757 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_label_distances.py` (``plot_label_distances.py``)                                                         | 00:11.195 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_label_distances.py` (``plot_label_distances.py``)                                                         | 00:11.797 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_standard_resting_network_on_aparc_annot_map.py` (``plot_standard_resting_network_on_aparc_annot_map.py``) | 00:11.097 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_connectivity.py` (``plot_generate_surrogate_connectivity.py``)                         | 00:09.893 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_connectivity.py` (``plot_generate_surrogate_connectivity.py``)                         | 00:06.477 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_communities.py` (``plot_communities.py``)                                                                 | 00:07.103 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_test_transform_mni_to_ras.py` (``plot_test_transform_mni_to_ras.py``)                                     | 00:06.160 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_test_transform_mni_to_ras.py` (``plot_test_transform_mni_to_ras.py``)                                     | 00:06.230 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_communities.py` (``plot_communities.py``)                                                                 | 00:05.499 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_destriux_atlas_based_connectivity.py` (``plot_destriux_atlas_based_connectivity.py``)                     | 00:03.247 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_stcs.py` (``plot_generate_surrogate_stcs.py``)                                         | 00:03.791 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_generate_surrogate_stcs.py` (``plot_generate_surrogate_stcs.py``)                                         | 00:02.964 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_destriux_atlas_based_connectivity.py` (``plot_destriux_atlas_based_connectivity.py``)                     | 00:03.256 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_connectivity_between_standard_rsns.py` (``plot_connectivity_between_standard_rsns.py``)                   | 00:02.961 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_brain_connectome.py` (``plot_brain_connectome.py``)                                                       | 00:02.879 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_brain_connectome.py` (``plot_brain_connectome.py``)                                                       | 00:02.747 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_generic_grouped_connectivity_circle.py` (``plot_generic_grouped_connectivity_circle.py``)                 | 00:02.413 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_generic_grouped_connectivity_circle.py` (``plot_generic_grouped_connectivity_circle.py``)                 | 00:02.731 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_connectivity_between_standard_rsns.py` (``plot_connectivity_between_standard_rsns.py``)                   | 00:02.219 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_epochs_surrogates.py` (``plot_compute_epochs_surrogates.py``)                                     | 00:01.626 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_grouped_connectivity_circle.py` (``plot_grouped_connectivity_circle.py``)                                 | 00:01.528 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_grouped_connectivity_circle.py` (``plot_grouped_connectivity_circle.py``)                                 | 00:01.521 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_compute_epochs_surrogates.py` (``plot_compute_epochs_surrogates.py``)                                     | 00:01.523 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_labelled_connectivity_circle.py` (``plot_labelled_connectivity_circle.py``)                               | 00:01.461 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_labelled_connectivity_circle.py` (``plot_labelled_connectivity_circle.py``)                               | 00:01.122 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_simulated_connectivity.py` (``plot_simulated_connectivity.py``)                                           | 00:00.728 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_simulated_connectivity.py` (``plot_simulated_connectivity.py``)                                           | 00:00.599 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_degree_circle.py` (``plot_degree_circle.py``)                                                             | 00:00.361 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_surrogate_methods.py` (``plot_surrogate_methods.py``)                                                     | 00:00.356 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_circle_lines_and_blobs.py` (``plot_circle_lines_and_blobs.py``)                                           | 00:00.345 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_degree_circle.py` (``plot_degree_circle.py``)                                                             | 00:00.284 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_connectivity_plot_surrogate_methods.py` (``plot_surrogate_methods.py``)                                                     | 00:00.322 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_connectivity_plot_circle_lines_and_blobs.py` (``plot_circle_lines_and_blobs.py``)                                           | 00:00.238 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_connectivity_test_degree_circle_plotting.py` (``test_degree_circle_plotting.py``)                                           | 00:00.000 | 0.0 MB |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+

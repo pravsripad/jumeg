@@ -86,7 +86,7 @@ Script exposing circle plots with outer ring.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.731 seconds)
+   **Total running time of the script:** ( 0 minutes  2.413 seconds)
 
 
 .. _sphx_glr_download_auto_examples_connectivity_plot_generic_grouped_connectivity_circle.py:

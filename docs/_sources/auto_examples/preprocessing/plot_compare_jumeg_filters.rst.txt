@@ -47,9 +47,9 @@ Comparison of the various filters available for use in mne/jumeg.
     Sampling frequency is 600.614990
     Effective window size : 3.410 (s)
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.3s remaining:    0.3s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.4s remaining:    0.0s
-    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.4s finished
+    [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.4s remaining:    0.4s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.5s remaining:    0.0s
+    [Parallel(n_jobs=4)]: Done   4 out of   4 | elapsed:    0.5s finished
     Effective window size : 3.410 (s)
     [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
     [Parallel(n_jobs=4)]: Done   2 out of   4 | elapsed:    0.3s remaining:    0.3s
@@ -178,7 +178,7 @@ Comparison of the various filters available for use in mne/jumeg.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.714 seconds)
+   **Total running time of the script:** ( 0 minutes  15.067 seconds)
 
 
 .. _sphx_glr_download_auto_examples_preprocessing_plot_compare_jumeg_filters.py:

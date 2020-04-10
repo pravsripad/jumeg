@@ -181,8 +181,8 @@ doctest:
 install:
 	touch $(BUILDDIR)/.nojekyll
 	git add $(BUILDDIR)/.nojekyll
-	rm -rf ./auto_examples /generated
+	rm -rf ./auto_examples ./generated
 	mv $(OUTPUTDIR)/* ./
-	# rm -rf $(BUILDDIR)/
-	git commit -a -m 'Generate jumeg site' ./
+	rm -rf ./$(BUILDDIR)/
+	git commit -a -m 'Generate jumeg site' ./$(SOURCEDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
