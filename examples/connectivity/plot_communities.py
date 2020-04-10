@@ -1,10 +1,10 @@
-#!/usr/bin/env python
-
-'''
+"""
+===============================================
 Plot Networkx Communities on a connectome plot.
+===============================================
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import numpy as np
 

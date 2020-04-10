@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
-
-"""Script show how to compute and visualize distance between label center of
-masses for a given subject.
-
-Author: Praveen Sripad <pravsripad@gmail.com>
 """
+=================================================================================
+Script show how to compute and visualize distance between label center of masses.
+=================================================================================
+"""
+
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 from jumeg.connectivity import get_label_distances
 from surfer import Brain

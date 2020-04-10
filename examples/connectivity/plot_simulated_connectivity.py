@@ -1,6 +1,8 @@
-#!/usr/bin/env python
-
-'''Simple implementations of connectivity measures.'''
+"""
+================================================
+Simple implementations of connectivity measures.
+================================================
+"""
 
 # Authors : pravsripad@gmail.com
 #           daniel.vandevelden@yahoo.de
@@ -119,7 +121,7 @@ def my_con(x, y, n_epochs, nfft, sfreq, con_name='coh'):
     freqs, Rxy, Rxy_mean, Rxx_mean, Ryy_mean = compute_mean_psd_csd(x, y, n_epochs, nfft, sfreq)
 
     # compute surrogates
-    x_surr = x.copy() 
+    x_surr = x.copy()
     y_surr = y.copy()
     np.random.shuffle(x_surr)
     np.random.shuffle(y_surr)

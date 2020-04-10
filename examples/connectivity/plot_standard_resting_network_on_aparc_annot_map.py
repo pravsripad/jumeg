@@ -1,9 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+"""
+========================================================================
+Visualize the standard resting state network on the connectivity circle.
+========================================================================
 
-'''
 Plot the visualization of the standard resting state network on the
 connectivity circle plot showing the Freesurfer aparc annotation map.
+
 
 This provides a quick visualization of the primary connections of the standard
 resting state network.
@@ -14,8 +16,9 @@ Uses the standard RSNs provided by [1]
 Resting-State Functional Connectivity,” Brain Connect., vol. 6, no. 6,
 pp. 448–460, 2016.
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+"""
+
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import os.path as op
 import numpy as np

@@ -1,11 +1,12 @@
-#!/usr/bin/env python
+"""
+================================================================================
+Plot connectivity on a glass brain using 'plot_connectome' function from nilearn
+================================================================================
 
-'''
-Plot connectivity on a glass brain using 'plot_connectome' function from
-Nilearn (https://nilearn.github.io/).
+Nilearn (https://nilearn.github.io/)
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import numpy as np
 import mne

@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+"""
+=====================================
+Script showing surrogate computation.
+=====================================
+"""
 
 import numpy as np
 import matplotlib.pyplot as pl
@@ -35,7 +39,7 @@ epochs = mne.Epochs(raw, events, event_id, tmin, tmax, picks=picks,
 
 snr = 1.0  # use lower SNR for single epochs
 lambda2 = 1.0 / snr ** 2
-method = "dSPM"  # use dSPM method (could also be MNE or sLORETA)
+method = 'dSPM'  # use dSPM method (could also be MNE or sLORETA)
 stcs = apply_inverse_epochs(epochs, inverse_operator, lambda2, method,
                             pick_ori="normal", return_generator=False)
 
@@ -51,7 +55,7 @@ label_ts = mne.extract_label_time_course(stcs, labels, src, mode='mean_flip',
                                          return_generator=False)
 
 # compute surrogates on the first STC extracted for 68 labels
-n_surr = 5
+n_surr = 10
 fmin = 8.
 fmax = 13.
 sfreq = raw.info['sfreq']  # the sampling frequency
@@ -60,8 +64,8 @@ n_rois = len(labels)
 full_surr_con = np.zeros((3, n_rois, n_rois, 1, n_surr))
 
 real_con, freqs, times, n_epochs, n_tapers = spectral_connectivity(
-    label_ts, method=con_methods, mode='fourier', sfreq=sfreq,
-    fmin=fmin, fmax=fmax, faverage=True, mt_adaptive=True, n_jobs=4)
+    np.array(label_ts), method=con_methods, mode='fourier', sfreq=sfreq,
+    fmin=fmin, fmax=fmax, faverage=True, mt_adaptive=False, n_jobs=4)
 
 # loop through each of the label_ts from each epoch (i.e. 71)
 # for my_label_ts in label_ts:
@@ -73,7 +77,7 @@ surr_label_ts = surr_ts.compute_surrogates(n_surr=n_surr,
 for ind_surr, surr in enumerate(surr_label_ts):
     con, freqs, times, n_epochs, n_tapers = spectral_connectivity(
         surr, method=con_methods, mode='fourier', sfreq=sfreq,
-        fmin=fmin, fmax=fmax, faverage=True, mt_adaptive=True, n_jobs=4)
+        fmin=fmin, fmax=fmax, faverage=True, mt_adaptive=False, n_jobs=4)
 
     # con shape (method, n_signals, n_signals, n_freqs)
     full_surr_con[:, :, :, :, ind_surr] = con

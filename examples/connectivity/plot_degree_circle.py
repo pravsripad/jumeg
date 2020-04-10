@@ -1,8 +1,8 @@
-#!/usr/bin/env python
-
-'''
+"""
+====================================================================
 Plot degree values for a given set of nodes in a simple circle plot.
-'''
+====================================================================
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt

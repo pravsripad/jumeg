@@ -1,8 +1,7 @@
 """
-====================
-Jumeg MFT example.
-
+================================================
 Perform MFT on a surface based forward solution.
+================================================
 """
 
 import numpy as np
