@@ -15,7 +15,9 @@
 *.tar.*
 *.egg*
 *.tmproj
-*.png
+# *.png
+examples/*.png
+examples/*/*.png
 *.idea
 *.old
 *.dat
