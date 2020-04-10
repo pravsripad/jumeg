@@ -42,7 +42,7 @@ extensions = [
 autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+# templates_path = ['_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -316,10 +316,10 @@ intersphinx_mapping = {
 }
 
 sphinx_gallery_conf = {
-    'backreferences_dir': 'gen_modules/backreferences',
-    'doc_module': ('jumeg', 'numpy'),
+    # 'backreferences_dir': 'gen_modules/backreferences',
+    # 'doc_module': ('jumeg', 'numpy'),
     'examples_dirs': '../examples',
-    'gallery_dirs': 'auto_examples',
+    # 'gallery_dirs': 'auto_examples',
     'reference_url': {
         'jumeg': None,
         },

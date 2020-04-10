@@ -1,8 +1,7 @@
 """
-=======================================================
-Plot a given data distribution compared with a standard
-Gaussian distribution.
-=======================================================
+==============================================================================
+Plot a given data distribution compared with a standard Gaussian distribution.
+==============================================================================
 """
 
 import matplotlib.pyplot as plt
