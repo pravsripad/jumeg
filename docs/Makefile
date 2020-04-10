@@ -7,7 +7,7 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
 
-GITHUB_PAGES_BRANCH = master
+GITHUB_PAGES_BRANCH = jumeg_sphinx
 OUTPUTDIR = _build/html
 
 # Put it first so that "make" without argument is like "make help".
@@ -179,7 +179,10 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 install:
-	touch $(OUTPUTDIR)/.nojekyll
-	git add $(OUTPUTDIR)/.nojekyll
-	git commit -m 'Generate jumeg site' $(OUTPUTDIR)/
+	touch $(BUILDDIR)/.nojekyll
+	git add $(BUILDDIR)/.nojekyll
+	rm -rf ./auto_examples /generated
+	mv $(OUTPUTDIR)/* ./
+	# rm -rf $(BUILDDIR)/
+	git commit -a -m 'Generate jumeg site' ./
 	git push origin $(GITHUB_PAGES_BRANCH)
