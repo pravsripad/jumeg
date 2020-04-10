@@ -1,8 +1,8 @@
-#!/usr/bin/env python
-
-'''
+"""
+==============================================================
 Script to plot label distances on circle and connectome plots.
-'''
+==============================================================
+"""
 
 import os.path as op
 import numpy as np
@@ -39,7 +39,7 @@ con = np.load(label_distances_fname)
 node_order_size = con.shape[0]
 
 # forget long range connections, plot short neighbouring connections
-neighbor_range = 30.  # millimetres 
+neighbor_range = 30.  # millimetres
 con[con > neighbor_range] = 0.
 
 plot_grouped_connectivity_circle(yaml_fname, con, label_names,

@@ -1,10 +1,11 @@
-#!/usr/bin/env python
-
-'''
+"""
+=========================================
 Read grouped aparc labels from yaml file.
+=========================================
+
 Plot grouped connectivity circle with these grouped labels
 for the Destriux atlas.
-'''
+"""
 
 import numpy as np
 import mne

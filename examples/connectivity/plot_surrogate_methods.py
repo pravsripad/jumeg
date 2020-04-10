@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+"""
+=============================================================================
+Script showing various methods used to generate surrogate from a time series.
+=============================================================================
+"""
 
 import numpy as np
 import mne

@@ -1,14 +1,20 @@
-'''
-Modified MNE-Python example script to show connectivity between standard
-resting state network labels obtained from [1].
+"""
+================================================================
+Show connectivity between standard resting state network labels.
+================================================================
+
+Modified MNE-Python example script.
+
+Show connectivity between standard resting state network labels obtained from [1].
 
 [1] P. Garcés, M. C. Martín-Buro, and F. Maestú,
 “Quantifying the Test-Retest Reliability of Magnetoencephalography
 Resting-State Functional Connectivity,” Brain Connect., vol. 6, no. 6, pp.
 448–460, 2016.
+"""
 
-Author: Praveen sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen sripad <pravsripad@gmail.com>
+
 
 import numpy as np
 import matplotlib.pyplot as plt

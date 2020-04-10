@@ -1,9 +1,8 @@
-#!/usr/bin/env python
-
-'''
-Example to show surrogate generation on Epochs using the jumeg Surrogates
-module.
-'''
+"""
+=================================================================================
+Example to show surrogate generation on Epochs using the jumeg Surrogates module.
+=================================================================================
+"""
 
 import numpy as np
 import matplotlib.pyplot as pl

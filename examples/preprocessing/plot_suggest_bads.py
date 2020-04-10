@@ -1,7 +1,11 @@
 #!/usr/bin/env python
-'''
+"""
+=====================
+Identify bad channels
+=====================
+
 Example code to use the jumeg suggest bads functionality.
-'''
+"""
 
 import mne
 from mne.datasets import sample

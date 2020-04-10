@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
-
-'''
+"""
+=============================================
 Script exposing circle plots with outer ring.
+=============================================
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import numpy as np
 from jumeg.connectivity import (plot_generic_grouped_circle,

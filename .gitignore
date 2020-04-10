@@ -77,5 +77,8 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+docs/generated/
+docs/auto_examples/
+docs/modules/generated/
 
 .DS_Store

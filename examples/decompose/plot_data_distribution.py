@@ -1,8 +1,9 @@
-#!/usr/bin/env python
-'''
-Example script to plot a given data distribution compared with a standard
+"""
+=======================================================
+Plot a given data distribution compared with a standard
 Gaussian distribution.
-'''
+=======================================================
+"""
 
 import matplotlib.pyplot as plt
 import mne

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
-'''
-Perform Granger based causality analysis using Generalized Parital Directed
-Coherence on example dataset.
+"""
+======================================================================================
+Perform Granger based causality analysis using Generalized Parital Directed Coherence.
+======================================================================================
 
 Uses the data and example from mne-python combined with the Scot package
 to perform the Granger Causality analysis.
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import numpy as np
 from scipy import stats

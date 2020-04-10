@@ -1,6 +1,9 @@
 """
+===================================================================
 Compute the ica object on filtered data based on the mne and on the
 jumeg method.
+===================================================================
+
 Compare pca_mean_ and pre_whitener_ for:
 mne & filtered data, jumeg & filtered data, jumeg & unfiltered data
 """

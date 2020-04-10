@@ -1,7 +1,8 @@
-#!/usr/bin/env python
-'''
-Example script to estimate the rank of the given data array.
-'''
+"""
+==========================================
+Estimate the rank of the given data array.
+==========================================
+"""
 
 import mne
 import numpy as np

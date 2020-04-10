@@ -1,8 +1,14 @@
-'''
-To plot a vertex point, convert it to MNI coordinates and then reconvert it back to RAS to obtain the vertex number.
+"""
+============================================================
+Transform MNI coordinates and then reconvert it back to RAS.
+============================================================
+
+To plot a vertex point, convert it to MNI coordinates and then reconvert it
+back to RAS to obtain the vertex number.
+
 
 It works when 'fsaverage' subject is used, but does not when any other subjects are used.
-'''
+"""
 
 import os
 import mne

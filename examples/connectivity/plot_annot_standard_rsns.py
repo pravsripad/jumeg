@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
-
-'''
+"""
+===============================================================
 Grow and visualize standard resting state ROIs from literature.
+===============================================================
 
 1. Read ROIs of standard regions involved in resting state networks from literature.
    (the data is provided as a csv file with list of regions with seed MNI coordinates)
@@ -12,9 +12,9 @@ Uses RSNs provided by [1]
 [1] P. Garcés, M. C. Martín-Buro, and F. Maestú,
 “Quantifying the Test-Retest Reliability of Magnetoencephalography
 Resting-State Functional Connectivity,” Brain Connect., vol. 6, no. 6, pp. 448–460, 2016.
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import os.path as op
 import numpy as np

@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
-
-'''
+"""
+======================================================================
 Example exposing the plot_labelled_group_connectivity_circle function.
+======================================================================
+"""
 
-Author: Praveen Sripad <pravsripad@gmail.com>
-'''
-
+# Author: Praveen Sripad <pravsripad@gmail.com>
 
 import numpy as np
 from jumeg.connectivity import plot_labelled_group_connectivity_circle
